@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="main.css">
+  <title>Hi-Low</title>
+</head>
+
+<body>
+  <main>
+    <h1 class='title'>Hi-Low</h1>
+    <p class="description">In this game, the computer generates a random number. You have 10 tries to guess that number. 
+      Along the way, you'll be guided in your responses. Good luck!</p>
+    <div class="input-ctr">
+      <input type="number" name="num-input" id="numInput">
+      <button id="submitBtn" onclick="submit()"></button>
+    </div>
+    <h3 id="resultText"></h3>
+    <div class="guess-ctr">
+      <div class="guess-header">Previous Guesses <span id="guessCount"></span></div>
+      <div id="guessList"></div>
+    </div>
+
+  </main>
+  <script src="app.js"></script>
+</body>
+
+</html>
