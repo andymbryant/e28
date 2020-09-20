@@ -43,7 +43,7 @@ function submit() {
   }
   // If player guesses a number that is outside the acceptable number range
   if (guess < min || guess > max) {
-    text = `Your guess must be more than ${min} and less than ${max}.`
+    text = `Your guess must be between ${min} and ${max} (inclusive).`
     resultText.innerHTML = text
     numInput.value = ""
     return
@@ -69,7 +69,7 @@ function submit() {
   if (prevGuesses.length !== allowedNumGuesses) {
     resultText.innerHTML = text
   } else {
-    // Otherwise, prompt player to start over
+    // Otherwise, prompt player to start over.
     resultText.innerHTML = "You ran out of guesses!"
     submitBtn.innerText = playAgainStr
   }
