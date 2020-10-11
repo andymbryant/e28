@@ -1,8 +1,11 @@
-var app = new Vue({
+let app = new Vue({
   el: "#app",
   data: {
     items: [],
-    item: ''
+    item: '',
+    isAdmin: true,
+    test: [1, 2, 3],
+    profileUrl: 'google.com'
   },
   methods: {
     addItemToList() {

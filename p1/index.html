@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/vue@next" defer></script>
+  <script src="js/components.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <title>Hi Low</title>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <main>
+      <h1 class='title'>Hi-Low</h1>
+      <p class="description">In this game, the computer generates a random number. You have 10 tries to guess that number.
+        Along the way, you'll be guided in your responses. Good luck!
+      </p>
+      <number-input/>
+      <h3 id="resultText"></h3>
+      <div class="guess-ctr">
+        <div class="guess-header">Previous Guesses <span id="guessCount"></span></div>
+        <div id="guessList"></div>
+      </div>
+
+    </main>
+    <test-component></test-component>
+  </div>
+  <script type='text/x-template' id="test-component">
+    <h1>This is the dumbest thing I've ever seen.</h1>
+  </script>
+  <script type='text/x-template' id='number-input'>
+    <div class="input-ctr">
+      <input type="number" name="num-input" id="numInput">
+      <button id="submitBtn" onclick="submit()"></button>
+    </div>
+  </script>
+</body>
+</html>
