@@ -17,24 +17,22 @@
       <p class="description">In this game, the computer generates a random number. You have 10 tries to guess that number.
         Along the way, you'll be guided in your responses. Good luck!
       </p>
-      <number-input/>
-      <h3 id="resultText"></h3>
-      <div class="guess-ctr">
-        <div class="guess-header">Previous Guesses <span id="guessCount"></span></div>
-        <div id="guessList"></div>
-      </div>
-
+      <number-input :isGameOver="isGameOver" @make-guess='makeGuess'/>
+      <guess-display :isGameOver='isGameOver' :prevGuesses='prevGuesses'/>
     </main>
-    <test-component></test-component>
   </div>
-  <script type='text/x-template' id="test-component">
-    <h1>This is the dumbest thing I've ever seen.</h1>
-  </script>
   <script type='text/x-template' id='number-input'>
     <div class="input-ctr">
-      <input type="number" name="num-input" id="numInput">
-      <button id="submitBtn" onclick="submit()"></button>
+      <input type="number" name="num-input" v-model='guess' id="numInput">
+      <button id="submitBtn" @click="submit">{{submitButtonText}}</button>
     </div>
   </script>
+  <script type='text/x-template' id='guess-display'>
+    <h3>hey: {{resultText}}</h3>
+    <div class="guess-ctr">
+      <div class="guess-header">Previous Guesses <span id="guessCount"></span></div>
+      <div id="guessList"></div>
+    </div>
+    </script>
 </body>
 </html>
