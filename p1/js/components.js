@@ -1,46 +1,62 @@
 const numberInputOptions = {
+  template: '#guess-input',
   props: {
-    isGameOver: Boolean
+    is_game_over: {
+      type: Boolean,
+      required: true
+    },
+    guesses: {
+      type: Array,
+      required: true
+    }
   },
   data() {
     return {
-      guess: 0
+      guess: null,
     }
   },
   methods: {
-  },
-  computed: {
-    submitButtonText() {
-      return this.isGameOver ? 'Play Again' : 'Submit'
+    submit() {
+      this.$emit('make_guess', this.guess)
+      this.guess = null
+    },
+    resetGame() {
+      this.$emit('reset_game')
     }
-  },
-  template: '#number-input',
-  mounted() {
-    console.log(this.isGameOver)
   }
 }
 
 const guessDisplayOptions = {
-  // props: {
-  //   isGameOver: Boolean,
-  //   prevGuesses: Array
-  // },
+  template: '#guess-display',
+  props: {
+    is_game_over: {
+      type: Boolean,
+      required: true,
+    },
+    guesses: {
+      type: Array,
+      required: true
+    },
+    num_guesses_remaining: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
-      test: true
     }
   },
   methods: {
   },
   computed: {
     resultText() {
-      return ''
-      // console.log(this.prevGuesses)
-      // return this.prevGuesses.join(', ')
-    }
+      return this.guessesString
+    },
+    previous_guesses_string() {
+      return this.guesses.length ? this.guesses.join(', ') : '(Previous guesses will appear here)'
+    },
   },
-  template: '#guess-display',
   mounted() {
-    console.log('guess-display mounted')
-  }
+
+  },
 }

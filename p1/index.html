@@ -11,28 +11,36 @@
   <title>Hi-Low</title>
 </head>
 <body>
-  <div id="app" v-cloak>
+  <div id="app" v-cloak v-if='!is_loading'>
     <main>
-      <h1 class='title'>Hi-Low</h1>
-      <p class="description">In this game, the computer generates a random number. You have 10 tries to guess that number.
-        Along the way, you'll be guided in your responses. Good luck!
-      </p>
-      <number-input :isGameOver="isGameOver" @make-guess='makeGuess'/>
-      <guess-display :isGameOver='isGameOver' :prevGuesses='prevGuesses'/>
+      <div class='header-ctr'>
+        <h1 class='title'>Hi-Low</h1>
+        <p class="description">In this game, the computer generates a random number. You have 10 tries to guess that number.
+          Along the way, you'll be guided in your responses. Good luck!
+        </p>
+        <h3>{{feedback}}</h3>
+      </div>
+      <div class='component-wrapper'>
+        <guess-input :is_game_over="is_game_over" :guesses='guesses' @reset_game='resetGame' @make_guess='makeGuess'/>
+      </div>
+      <div class='component-wrapper'>
+        <guess-display :is_game_over='is_game_over' :guesses='guesses' :num_guesses_remaining='num_guesses_remaining' />
+      </div>
     </main>
   </div>
-  <script type='text/x-template' id='number-input'>
+  <script type='text/x-template' id='guess-input'>
     <div class="input-ctr">
+      <form action=""></form>
       <input type="number" name="num-input" v-model='guess' id="numInput">
-      <button id="submitBtn" @click="submit">{{submitButtonText}}</button>
+      <button v-if="is_game_over" @click="resetGame">Play Again</button>
+      <button v-else :disabled="!guess" @click="submit">Submit</button>
     </div>
   </script>
   <script type='text/x-template' id='guess-display'>
-    <h3>hey: {{resultText}}</h3>
-    <div class="guess-ctr">
-      <div class="guess-header">Previous Guesses <span id="guessCount"></span></div>
-      <div id="guessList"></div>
+    <div class="display-ctr">
+      <div class="guess-header">Guesses Remaining: <span>{{num_guesses_remaining}}</span></div>
+      <div>{{previous_guesses_string}}</div>
     </div>
-    </script>
+  </script>
 </body>
 </html>
