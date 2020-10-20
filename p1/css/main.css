@@ -20,11 +20,11 @@ main {
   justify-content: space-around;
 }
 
-.title {
+.game-title {
   color: #ad00ed;
 }
 
-.description {
+.game-description {
   margin-bottom: 2rem;
 }
 

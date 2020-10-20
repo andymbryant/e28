@@ -1,8 +1,9 @@
 const app = Vue.createApp({
   data() {
     return {
-      is_loading: false,
-      number_to_guess: 0,
+      isLoading: false,
+      test: false,
+      targetNumber: 0,
       guesses: [],
       feedback: '',
       range: {
@@ -10,57 +11,78 @@ const app = Vue.createApp({
         max: 100
       },
       winner: false,
-      num_guesses_allowed: 10
+      numGuessesAllowed: 3
     }
   },
   methods: {
+    /**
+     * Function used to reset the game to initial settings. Can be used to initialize the game.
+     */
     async resetGame() {
-      this.number_to_guess = this.getRandomInteger(this.range.min, this.range.max)
+      this.targetNumber = this.getRandomInteger(this.range.min, this.range.max)
       this.feedback = 'Make a guess...'
       this.guesses = []
     },
-    // Generate random number between min and max values (inclusive)
+    /**
+     * Generates a random number between min and max values (inclusive)
+     * @param {Number} min the low
+     * @param {Number} max
+     * @return {Number} random number between min and max values (inclusive)
+     */
     getRandomInteger(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min
     },
+    /**
+     * Executes the logic for making a guess in this game.
+     * @param {Number} guess the number guessed by the user
+     */
     makeGuess(guess) {
+      // Check if previous guesses include current guess
       if (this.guesses.includes(guess)) {
         this.feedback = "You've already guessed that!"
+        // Check if guess is within the acceptable range
       } else if (guess > this.range.max || guess < this.range.min) {
         this.feedback = `Your guess must be between ${this.range.min} and ${this.range.max} (inclusive).`
+        // If number is acceptable
       } else {
-        if (guess > this.number_to_guess) {
+        // Give correct feedback to user, i.e. high or low
+        if (guess > this.targetNumber) {
           this.feedback = 'Too high'
-        } else if (guess < this.number_to_guess) {
+        } else if (guess < this.targetNumber) {
           this.feedback = 'Too low'
         } else {
+          // If the guess is correct, end the game
           this.feedback = 'You win!'
           this.winner = true
         }
+        // Add guess to previous guesses
         this.guesses.push(guess)
-        if (this.is_game_over) {
-          this.feedback = 'You lose!'
+        // Check if game is over and provide feedback
+        if (this.isGameOver) {
+          this.feedback = `You lose! The number was ${this.targetNumber}.`
         }
       }
     },
   },
   computed: {
-    is_game_over() {
-      return this.winner || this.num_guesses_remaining === 0
+    // The game is over if the user runs out of guesses or if they are declared a winner
+    isGameOver() {
+      return this.winner || this.numGuessesRemaining === 0
     },
-    num_guesses_remaining() {
-      return this.num_guesses_allowed - this.guesses.length
+    numGuessesRemaining() {
+      return this.numGuessesAllowed - this.guesses.length
     },
   },
   created() {
-    this.is_loading = true
+    this.isLoading = true
   },
   mounted() {
     this.resetGame()
-      .then(() => this.$nextTick(()=> this.is_loading = false))
+      .then(() => this.$nextTick(()=> this.isLoading = false))
   }
 })
 
+// Register components globally
 app.component('guess-input', numberInputOptions)
 app.component('guess-display', guessDisplayOptions)
 

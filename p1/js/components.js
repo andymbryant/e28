@@ -1,7 +1,11 @@
+// Options for the two components in the game
+
+// This component is responsible for the number input, i.e. the interface for users to make a guess
+// It simply takes in a number and emits a makeGuess event to the app component
 const numberInputOptions = {
   template: '#guess-input',
   props: {
-    is_game_over: {
+    isGameOver: {
       type: Boolean,
       required: true
     },
@@ -17,19 +21,20 @@ const numberInputOptions = {
   },
   methods: {
     submit() {
-      this.$emit('make_guess', this.guess)
+      this.$emit('makeGuess', this.guess)
       this.guess = null
     },
     resetGame() {
-      this.$emit('reset_game')
+      this.$emit('resetGame')
     }
   }
 }
 
+// This component is responsible for displaying guess-related information (except for user feedback)
 const guessDisplayOptions = {
   template: '#guess-display',
   props: {
-    is_game_over: {
+    isGameOver: {
       type: Boolean,
       required: true,
     },
@@ -37,26 +42,17 @@ const guessDisplayOptions = {
       type: Array,
       required: true
     },
-    num_guesses_remaining: {
+    numGuessesRemaining: {
       type: Number,
       required: true
     }
-  },
-  data() {
-    return {
-    }
-  },
-  methods: {
   },
   computed: {
     resultText() {
       return this.guessesString
     },
-    previous_guesses_string() {
-      return this.guesses.length ? this.guesses.join(', ') : '(Previous guesses will appear here)'
+    previousGuessesString() {
+      return this.guesses.length ? this.guesses.join(', ') : '(your guesses will appear here)'
     },
-  },
-  mounted() {
-
-  },
+  }
 }
