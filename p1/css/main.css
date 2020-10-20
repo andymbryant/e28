@@ -28,6 +28,10 @@ main {
   margin-bottom: 2rem;
 }
 
+#numInput {
+  margin-right: 0.5rem;
+}
+
 .guess-header {
   font-style: italic;
   margin-bottom: 0.5rem;
