@@ -11,7 +11,7 @@ const app = Vue.createApp({
         max: 100
       },
       winner: false,
-      numGuessesAllowed: 3
+      numGuessesAllowed: 10
     }
   },
   methods: {
