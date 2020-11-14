@@ -1,13 +1,15 @@
 <template>
   <div class="product-list-ctr" v-if='!loading'>
     <ProductFilter/>
-    <Product
-      v-for='p in filteredProducts'
-      :key='p.sku'
-      :name='p.name'
-      :description='p.description'
-      :src='p.src'
-    />
+    <div class="products">
+      <Product
+        v-for='p in filteredProducts'
+        :key='p.sku'
+        :name='p.name'
+        :description='p.description'
+        :src='p.src'
+      />
+    </div>
   </div>
 </template>
 
@@ -29,30 +31,7 @@ export default {
   },
   methods: {
     async getProducts() {
-      return [
-        {
-          name: 'Driscoll’s Strawberries',
-          sku: 'driscolls-strawberries',
-          description: 'Driscoll’s Strawberries are consistently the best, sweetest, juiciest strawberries available. This size is the best selling, as it is both convenient for completing a cherished family recipes and for preparing a quick snack straight from the fridge.',
-          price: 4.99,
-          available: 0,
-          weight: 1,
-          perishable: true,
-          categories: 'produce,fruits',
-          src: 'https://picsum.photos/250',
-        },
-        {
-          name: 'Nestle Toll House Cookie Dough',
-          sku: 'nestle-toll-house-cookie-dough',
-          description: 'Get the classic taste that America loves in a ready to bake dough. Full of our famous morsels, these cookies deliver the semi-sweet chocolate flavor youve come to expect from Nestle Toll House.',
-          price: 7.49,
-          available: 325,
-          weight: 2.25,
-          perishable: true,
-          categories: 'snacks,baking',
-          src: 'https://picsum.photos/250',
-        },
-      ];
+      return this.$api.getProducts();
     },
   },
   computed: {
@@ -65,7 +44,7 @@ export default {
   },
   mounted() {
     this.getProducts()
-      .then((res) => this.products = res)
+      .then((res) => this.products = res.data.product)
       .then(() => this.loading = false);
   },
 };
@@ -74,10 +53,15 @@ export default {
 <style scoped>
   .product-list-ctr {
     width: 100%;
+    border: 1px black solid;
+    margin: 0 1rem;
+    padding: 1rem;
+  }
+  .products {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
   }
 </style>
