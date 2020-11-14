@@ -8,11 +8,6 @@
 <script>
 export default {
   name: 'Header',
-  data() {
-    return {
-
-    };
-  },
 };
 </script>
 
@@ -26,5 +21,4 @@ export default {
     margin-top: 2rem;
     padding: 1rem 2rem;
   }
-
 </style>
