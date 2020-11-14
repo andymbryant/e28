@@ -1,16 +1,19 @@
 <template>
-  <Header/>
+  <Masthead/>
+  <ProductFilter/>
   <ProductList v-if='!loading'/>
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
+import Masthead from '@/components/Masthead.vue';
+import ProductFilter from '@/components/ProductFilter.vue';
 import ProductList from '@/components/ProductList.vue';
 
 export default {
   name: 'Home',
   components: {
-    Header,
+    Masthead,
+    ProductFilter,
     ProductList,
   },
   data() {

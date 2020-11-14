@@ -3,11 +3,17 @@
     <h1>Great British Bake-off Shop</h1>
     <p>The Unofficial Online Store for your Favorite Show!</p>
   </div>
+  <NavBar/>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
+
 export default {
-  name: 'Header',
+  name: 'MastHead',
+  components: {
+    NavBar,
+  },
 };
 </script>
 

@@ -1,5 +1,8 @@
 <template>
-  <div class="filter-ctr"></div>
+  <div class="filter-ctr">
+    <div>Search</div>
+    <div>awesome</div>
+  </div>
 </template>
 
 <script>
@@ -14,5 +17,9 @@ export default {
     height: 100px;
     border: solid grey 1px;
     margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 </style>

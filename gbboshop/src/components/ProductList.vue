@@ -1,6 +1,5 @@
 <template>
   <div class="product-list-ctr" v-if='!loading'>
-    <ProductFilter/>
     <div class="products">
       <Product
         v-for='p in filteredProducts'
@@ -14,13 +13,11 @@
 </template>
 
 <script>
-import ProductFilter from '@/components/ProductFilter.vue';
 import Product from '@/components/Product.vue';
 
 export default {
   name: 'ProductList',
   components: {
-    ProductFilter,
     Product,
   },
   data() {
@@ -44,7 +41,7 @@ export default {
   },
   mounted() {
     this.getProducts()
-      .then((res) => this.products = res.data.product)
+      .then((res) => this.products = res)
       .then(() => this.loading = false);
   },
 };
