@@ -3,6 +3,7 @@ import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Favorites from '@/views/Favorites.vue';
 import Cart from '@/views/Cart.vue';
+import ProductDetail from '@/views/ProductDetail.vue';
 import NotFound from '@/views/NotFound.vue';
 
 const routes = [
@@ -25,6 +26,12 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart,
+  },
+  {
+    path: '/product-detail/:id',
+    name: 'ProductDetail',
+    component: ProductDetail,
+    props: true,
   },
   {
     path: '/404',

@@ -1,35 +1,28 @@
 <template>
   <div class="product-list-ctr" v-if='!loading'>
     <div class="products">
-      <Product
+      <ProductCard
         v-for='p in filteredProducts'
         :key='p.sku'
-        :name='p.name'
-        :description='p.description'
-        :src='p.src'
+        :productData='p'
       />
     </div>
   </div>
 </template>
 
 <script>
-import Product from '@/components/Product.vue';
+import ProductCard from '@/components/ProductCard.vue';
 
 export default {
   name: 'ProductList',
   components: {
-    Product,
+    ProductCard,
   },
   data() {
     return {
       loading: false,
       products: null,
     };
-  },
-  methods: {
-    async getProducts() {
-      return this.$api.getProducts();
-    },
   },
   computed: {
     filteredProducts() {
@@ -40,7 +33,7 @@ export default {
     this.loading = true;
   },
   mounted() {
-    this.getProducts()
+    this.$api.getProduct()
       .then((res) => this.products = res)
       .then(() => this.loading = false);
   },
