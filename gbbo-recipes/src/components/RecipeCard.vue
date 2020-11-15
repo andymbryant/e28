@@ -4,8 +4,18 @@
     <div class="card-content">
       <h3>{{recipeData.name}}</h3>
       <p>{{recipeData.description}}</p>
-      <p v-if="!mini">{{recipeData.directions}}</p>
-      <p v-if="!mini">{{recipeData.ingredients}}</p>
+      <div v-if='!mini' class='card-section'>
+        <div class="ingredients-ctr">
+          <h4>Ingredients</h4>
+          <ul>
+            <li v-for='i in ingredients' :key='i'>{{i}}</li>
+          </ul>
+        </div>
+        <div class="directions-ctr">
+          <h4>Directions</h4>
+          {{recipeData.directions}}
+        </div>
+      </div>
       <div class="card-icons">
         <font-awesome-icon icon="heart" class='test'/>
         <font-awesome-icon icon="shopping-cart" class='test'/>
@@ -28,6 +38,11 @@ export default {
       default: false,
     },
   },
+  computed: {
+    ingredients() {
+      return this.recipeData.ingredients.split(',');
+    },
+  },
   methods: {
     navToItemDetail() {
       this.$router.push({ name: 'RecipeDetail', params: { id: this.recipeData.id } });
@@ -36,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .card {
     background: #fff;
     border-radius: 2px;
@@ -47,7 +62,13 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative
+  }
+  .card-section {
+    display: flex;
+    text-align: left;
+  }
+  .directions-ctr {
+    width: 500px;
   }
   .card-icons {
     display: flex;
@@ -57,9 +78,9 @@ export default {
   .card-content {
     padding: 0 1rem 1rem 1rem;
   }
-</style>
-
-<style scoped>
+  .card-section-header {
+    margin-bottom: 0;
+  }
   .card-img {
     width: 100%;
   }

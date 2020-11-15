@@ -41,6 +41,6 @@ export default {
 
 <style scoped>
   .detail-ctr {
-    width: 800px;
+    width: 700px;
   }
 </style>

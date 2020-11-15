@@ -1,6 +1,6 @@
 <template>
-  <div class="product-list-ctr" v-if='!loading'>
-    <div class="products">
+  <div class="recipe-list-ctr" v-if='!loading'>
+    <div class="recipes">
       <RecipeCard
         v-for='r in filteredRecipes'
         :key='r.sku'
@@ -42,13 +42,13 @@ export default {
 </script>
 
 <style scoped>
-  .product-list-ctr {
+  .recipe-list-ctr {
     width: 100%;
     border: 1px black solid;
     margin: 0 1rem;
     padding: 1rem;
   }
-  .products {
+  .recipes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
