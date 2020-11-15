@@ -50,8 +50,7 @@ export default {
   }
   .recipes {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-column-gap: 20px;
     grid-row-gap: 20px;
   }

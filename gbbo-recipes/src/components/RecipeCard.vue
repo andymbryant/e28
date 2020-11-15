@@ -16,10 +16,10 @@
           {{recipeData.directions}}
         </div>
       </div>
-      <div class="card-icons">
-        <font-awesome-icon icon="heart" class='test'/>
-        <font-awesome-icon icon="shopping-cart" class='test'/>
-      </div>
+    </div>
+    <div class="card-icons">
+      <font-awesome-icon icon="heart" class='test'/>
+      <font-awesome-icon icon="shopping-cart" class='test'/>
     </div>
   </div>
 </template>
@@ -59,9 +59,7 @@ export default {
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     text-align: center;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative;
   }
   .card-section {
     display: flex;
@@ -70,13 +68,17 @@ export default {
   .directions-ctr {
     width: 500px;
   }
-  .card-icons {
-    display: flex;
-    width: 50px;
-    justify-content: space-between;
-  }
   .card-content {
     padding: 0 1rem 1rem 1rem;
+    position: relative;
+  }
+  .card-icons {
+    position: absolute;
+    display: flex;
+    width: 50px;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    justify-content: space-between;
   }
   .card-section-header {
     margin-bottom: 0;

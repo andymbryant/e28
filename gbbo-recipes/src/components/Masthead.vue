@@ -19,9 +19,6 @@ export default {
 
 <style scoped>
   .title-ctr {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
     border: dashed 5px pink;
     margin-top: 2rem;
