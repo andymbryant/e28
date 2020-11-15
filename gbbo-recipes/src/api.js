@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export default class APIService {
-  getProduct(id = null) {
-    let url = 'http://e28-api.vueserver.com/product';
+  getRecipe(id = null) {
+    let url = 'http://e28-api.vueserver.com/recipe';
     if (id) {
       url += `/${id}`;
     }
-    return axios.get(url).then((res) => res.data.product);
+    return axios.get(url).then((res) => res.data.recipe);
   }
 }

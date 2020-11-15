@@ -1,40 +1,41 @@
 <template>
   <div class="product-list-ctr" v-if='!loading'>
     <div class="products">
-      <ProductCard
-        v-for='p in filteredProducts'
-        :key='p.sku'
-        :productData='p'
+      <RecipeCard
+        v-for='r in filteredRecipes'
+        :key='r.sku'
+        :recipeData='r'
+        :mini='true'
       />
     </div>
   </div>
 </template>
 
 <script>
-import ProductCard from '@/components/ProductCard.vue';
+import RecipeCard from '@/components/RecipeCard.vue';
 
 export default {
-  name: 'ProductList',
+  name: 'RecipeList',
   components: {
-    ProductCard,
+    RecipeCard,
   },
   data() {
     return {
       loading: false,
-      products: null,
+      recipes: null,
     };
   },
   computed: {
-    filteredProducts() {
-      return this.products;
+    filteredRecipes() {
+      return this.recipes;
     },
   },
   created() {
     this.loading = true;
   },
   mounted() {
-    this.$api.getProduct()
-      .then((res) => this.products = res)
+    this.$api.getRecipe()
+      .then((res) => this.recipes = res)
       .then(() => this.loading = false);
   },
 };

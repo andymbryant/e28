@@ -1,20 +1,20 @@
 <template>
   <Masthead/>
-  <ProductFilter/>
-  <ProductList v-if='!loading'/>
+  <RecipeFilter/>
+  <RecipeList v-if='!loading'/>
 </template>
 
 <script>
 import Masthead from '@/components/Masthead.vue';
-import ProductFilter from '@/components/ProductFilter.vue';
-import ProductList from '@/components/ProductList.vue';
+import RecipeFilter from '@/components/RecipeFilter.vue';
+import RecipeList from '@/components/RecipeList.vue';
 
 export default {
   name: 'Home',
   components: {
     Masthead,
-    ProductFilter,
-    ProductList,
+    RecipeFilter,
+    RecipeList,
   },
   data() {
     return {

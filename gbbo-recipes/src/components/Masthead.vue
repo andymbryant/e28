@@ -1,7 +1,7 @@
 <template>
   <div class='title-ctr'>
-    <h1>Great British Bake-off Shop</h1>
-    <p>The Unofficial Online Store for your Favorite Show!</p>
+    <h1>Great British Bake-off Recipes</h1>
+    <p>The Unofficial Online Recipe Book for your Favorite Show!</p>
   </div>
   <NavBar/>
 </template>

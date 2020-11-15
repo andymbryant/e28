@@ -31,9 +31,9 @@ export default {
           path: '/favorites',
         },
         {
-          name: 'Cart',
-          key: 'cart-link',
-          path: '/cart',
+          name: 'Shopping List',
+          key: 'shopping-list-link',
+          path: '/shopping-list',
         },
       ],
     };

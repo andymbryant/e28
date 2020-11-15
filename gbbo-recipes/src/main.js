@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import router from './router';
@@ -9,6 +9,7 @@ import 'normalize.css';
 import './css/variables.css';
 
 library.add(faHeart);
+library.add(faShoppingCart);
 
 const api = new APIService();
 const app = createApp(App);
