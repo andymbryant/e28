@@ -1,6 +1,18 @@
 <template>
   <div class="nav-ctr">
-    <NavItem v-for='i in items' :key='i.key' :name='i.name' :path='i.path'/>
+    <div class="nav-items">
+      <NavItem v-for='i in items' :key='i.key' :name='i.name' :path='i.path'/>
+    </div>
+    <div class="auth-ctr">
+      <div class='auth-items' v-if='$api.isAuthenticated()'>
+        <button @click='logout'>Logout</button>
+        <div class='auth-greeting'>Hello, {{userName}}.</div>
+      </div>
+      <div class='auth-items' v-else>
+        <button @click='login'>Login</button>
+        <div class='auth-greeting'></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -31,12 +43,25 @@ export default {
           path: '/favorites',
         },
         {
-          name: 'Shopping List',
-          key: 'shopping-list-link',
-          path: '/shopping-list',
+          name: 'Cart',
+          key: 'cart-link',
+          path: '/cart',
         },
       ],
     };
+  },
+  methods: {
+    login() {
+      this.$api.login();
+    },
+    logout() {
+      this.$api.logout();
+    },
+  },
+  computed: {
+    userName() {
+      return this.$api.getUser().name;
+    },
   },
 };
 </script>
@@ -44,10 +69,21 @@ export default {
 <style scoped>
   .nav-ctr {
     display: flex;
-    width: 300px;
+    width: 600px;
     padding: 1rem 0;
     height: 50px;
     justify-content: space-around;
+    align-items: center;
+  }
+  .nav-items {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .auth-items {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 </style>

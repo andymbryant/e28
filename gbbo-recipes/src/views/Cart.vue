@@ -1,13 +1,13 @@
 <template>
   <Masthead/>
-  <h1>Shopping List</h1>
+  <h1>Cart</h1>
 </template>
 
 <script>
 import Masthead from '@/components/Masthead.vue';
 
 export default {
-  name: 'ShoppingList',
+  name: 'Cart',
   components: {
     Masthead,
   },

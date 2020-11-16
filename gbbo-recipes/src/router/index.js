@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Favorites from '@/views/Favorites.vue';
-import ShoppingList from '@/views/ShoppingList.vue';
+import Cart from '@/views/Cart.vue';
 import RecipeDetail from '@/views/RecipeDetail.vue';
 import NotFound from '@/views/NotFound.vue';
 
@@ -23,9 +23,9 @@ const routes = [
     component: Favorites,
   },
   {
-    path: '/shopping-list',
-    name: 'ShoppingList',
-    component: ShoppingList,
+    path: '/Cart',
+    name: 'Cart',
+    component: Cart,
   },
   {
     path: '/recipe-detail/:id',

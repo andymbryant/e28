@@ -1,12 +1,28 @@
 <template>
-  <div class="recipe-list-ctr" v-if='!loading'>
-    <div class="recipes">
+  <div class='recipe-list-ctr' v-if='!loading'>
+    <div class="categories-ctr">
+      <h4 class='section-header'>Categories</h4>
+      <span v-for='c in allCategories' :key='c'>
+        <input
+          type="checkbox"
+          class='category-checkbox'
+          :id="c"
+          :value="c"
+          v-model="selectedCategories"
+        >
+        <label class='category-label' :for="c">{{c}}</label>
+      </span>
+    </div>
+    <div v-if='filteredRecipes.length' class="recipes-ctr">
       <RecipeCard
         v-for='r in filteredRecipes'
         :key='r.sku'
         :recipeData='r'
         :mini='true'
       />
+    </div>
+    <div class='empty-recipes-ctr' v-else>
+      <h3>No recipes match that query! Please adjust filter settings.</h3>
     </div>
   </div>
 </template>
@@ -23,11 +39,27 @@ export default {
     return {
       loading: false,
       recipes: null,
+      selectedCategories: [],
     };
   },
   computed: {
     filteredRecipes() {
-      return this.recipes;
+      const recipes = this.recipes.filter((r) => {
+        const categories = r.categories.split(',');
+        const selectedCategories = this.selectedCategories;
+        return categories.some((c) => selectedCategories.includes(c));
+      });
+      return recipes;
+    },
+    allCategories() {
+      const allCategories = [];
+      if (this.recipes) {
+        this.recipes.forEach((r) => {
+          const categories = r.categories.split(',');
+          allCategories.push(categories);
+        });
+      }
+      return Array.from(new Set(allCategories.flat()));
     },
   },
   created() {
@@ -36,6 +68,7 @@ export default {
   mounted() {
     this.$api.getRecipe()
       .then((res) => this.recipes = res)
+      .then(() => this.selectedCategories = this.allCategories)
       .then(() => this.loading = false);
   },
 };
@@ -43,15 +76,34 @@ export default {
 
 <style scoped>
   .recipe-list-ctr {
-    width: 100%;
-    border: 1px black solid;
-    margin: 0 1rem;
-    padding: 1rem;
+    display: flex;
   }
-  .recipes {
+  .categories-ctr {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+  }
+  .category-checkbox {
+    color: red;
+  }
+  .category-label {
+    margin-left: 0.5rem;
+  }
+  .section-header {
+    margin-top: 0;
+  }
+  .recipes-ctr {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+    width: 800px;
+  }
+  .empty-recipes-ctr {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
