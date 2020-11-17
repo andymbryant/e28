@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     userName() {
-      return this.$api.getUser().name;
+      return this.$api.user.name;
     },
   },
 };

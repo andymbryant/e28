@@ -16,20 +16,53 @@ export default class APIService {
     return this.axios.get(url).then((res) => res.data.recipe);
   }
 
-  get isAuthenticated() {
-    const token = window.localStorage.getItem('gb_auth_token');
-    const name = window.localStorage.getItem('gb_auth_name');
-    const email = window.localStorage.getItem('gb_auth_email');
-    return token && name && email;
+  getFavorite(id = null) {
+    let url = '/favorite';
+    if (id) {
+      url += `/${id}`;
+    }
+    return this.axios.get(url, { headers: { Authorization: `Bearer ${this.token}` } }).then((res) => res.data.favorite);
   }
 
-  getUser() {
+  get token() {
+    return window.localStorage.getItem('gb_auth_token');
+  }
+
+  set token(token) {
+    window.localStorage.setItem('gb_auth_token', token);
+  }
+
+  get email() {
+    return window.localStorage.getItem('gb_auth_email');
+  }
+
+  set email(email) {
+    window.localStorage.setItem('gb_auth_email', email);
+  }
+
+  get name() {
+    return window.localStorage.getItem('gb_auth_name');
+  }
+
+  set name(name) {
+    window.localStorage.setItem('gb_auth_name', name);
+  }
+
+  get isAuthenticated() {
+    return this.token && this.name && this.email;
+  }
+
+  get user() {
     if (this.isAuthenticated) {
-      const name = window.localStorage.getItem('gb_auth_name');
-      const email = window.localStorage.getItem('gb_auth_email');
-      return { name, email };
+      return { name: this.name, email: this.email };
     }
     return null;
+  }
+
+  clearUser() {
+    window.localStorage.removeItem('gb_auth_token');
+    window.localStorage.removeItem('gb_auth_name');
+    window.localStorage.removeItem('gb_auth_email');
   }
 
   async login() {
@@ -45,23 +78,18 @@ export default class APIService {
       .then((res) => {
         const { token, user } = res.data;
         const { name, email } = user;
-        window.localStorage.setItem('gb_auth_token', token);
-        window.localStorage.setItem('gb_auth_name', name);
-        window.localStorage.setItem('gb_auth_email', email);
+        this.token = token;
+        this.email = email;
+        this.name = name;
       });
   }
 
-  logout() {
+  async logout() {
     const url = '/logout';
     // const name = window.localStorage.getItem('gb_auth_name');
     // const email = window.localStorage.getItem('gb_auth_email');
     const token = window.localStorage.getItem('gb_auth_token');
-    this.axios.post(url, { headers: { Authorization: `bearer ${token}` } })
-      .then(() => {
-        window.localStorage.removeItem('gb_auth_token');
-        window.localStorage.removeItem('gb_auth_name');
-        window.localStorage.removeItem('gb_auth_email');
-      })
-      .catch((err) => console.error(err));
+    return this.axios.post(url, { headers: { Authorization: `bearer ${token}` } })
+      .then(() => this.clearUser());
   }
 }
