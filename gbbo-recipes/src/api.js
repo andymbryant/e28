@@ -1,12 +1,19 @@
 import axios from 'axios';
 
 export default class APIService {
+  constructor() {
+    this.axios = axios.create({
+      baseURL: 'http://e28-api.vueserver.com',
+      responseType: 'json',
+    });
+  }
+
   getRecipe(id = null) {
-    let url = 'http://e28-api.vueserver.com/recipe';
+    let url = '/recipe';
     if (id) {
       url += `/${id}`;
     }
-    return axios.get(url).then((res) => res.data.recipe);
+    return this.axios.get(url).then((res) => res.data.recipe);
   }
 
   isAuthenticated() {
@@ -26,12 +33,12 @@ export default class APIService {
   }
 
   login() {
-    const url = 'http://e28-api.vueserver.com/login';
+    const url = '/login';
     const data = {
       email: 'jill@harvard.edu',
       password: 'asdfasdf',
     };
-    axios.post(url, data)
+    this.axios.post(url, data)
       .then((res) => {
         const { token, user } = res.data;
         const { name, email } = user;
@@ -43,11 +50,11 @@ export default class APIService {
   }
 
   logout() {
-    const url = 'http://e28-api.vueserver.com/logout';
+    const url = '/logout';
     // const name = window.localStorage.getItem('gb_auth_name');
     // const email = window.localStorage.getItem('gb_auth_email');
     const token = window.localStorage.getItem('gb_auth_token');
-    axios.post(url, { headers: { Authorization: `bearer ${token}` } })
+    this.axios.post(url, { headers: { Authorization: `bearer ${token}` } })
       .then(() => {
         window.localStorage.removeItem('gb_auth_token');
         window.localStorage.removeItem('gb_auth_name');
