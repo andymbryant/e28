@@ -20,10 +20,9 @@ export default {
     this.loading = true;
   },
   mounted() {
-    this.loading = false;
-    // console.log(this);
-    // this.$api.login()
-    // .then(() => this.loading = false);
+    this.$api.login()
+      .then(() => this.loading = false)
+      .catch((err) => console.error(err));
   },
 };
 </script>
@@ -37,5 +36,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Roboto', sans-serif;
   }
 </style>

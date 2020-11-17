@@ -4,12 +4,12 @@
       <NavItem v-for='i in items' :key='i.key' :name='i.name' :path='i.path'/>
     </div>
     <div class="auth-ctr">
-      <div class='auth-items' v-if='$api.isAuthenticated()'>
-        <button @click='logout'>Logout</button>
-        <div class='auth-greeting'>Hello, {{userName}}.</div>
+      <div class='auth-items' v-if='$api.isAuthenticated'>
+        <!-- <button @click='logout'>Logout</button> -->
+        <div class='auth-greeting'>You are signed in as <strong>{{userName}}</strong>. Welcome!</div>
       </div>
       <div class='auth-items' v-else>
-        <button @click='login'>Login</button>
+        <!-- <button @click='login'>Login</button> -->
         <div class='auth-greeting'></div>
       </div>
     </div>

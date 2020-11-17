@@ -16,7 +16,7 @@ export default class APIService {
     return this.axios.get(url).then((res) => res.data.recipe);
   }
 
-  isAuthenticated() {
+  get isAuthenticated() {
     const token = window.localStorage.getItem('gb_auth_token');
     const name = window.localStorage.getItem('gb_auth_name');
     const email = window.localStorage.getItem('gb_auth_email');
@@ -24,7 +24,7 @@ export default class APIService {
   }
 
   getUser() {
-    if (this.isAuthenticated()) {
+    if (this.isAuthenticated) {
       const name = window.localStorage.getItem('gb_auth_name');
       const email = window.localStorage.getItem('gb_auth_email');
       return { name, email };
@@ -32,21 +32,23 @@ export default class APIService {
     return null;
   }
 
-  login() {
+  async login() {
+    if (this.isAuthenticated) {
+      return true;
+    }
     const url = '/login';
-    const data = {
+    const userData = {
       email: 'jill@harvard.edu',
       password: 'asdfasdf',
     };
-    this.axios.post(url, data)
+    return this.axios.post(url, userData)
       .then((res) => {
         const { token, user } = res.data;
         const { name, email } = user;
         window.localStorage.setItem('gb_auth_token', token);
         window.localStorage.setItem('gb_auth_name', name);
         window.localStorage.setItem('gb_auth_email', email);
-      })
-      .catch((err) => console.error(err));
+      });
   }
 
   logout() {
