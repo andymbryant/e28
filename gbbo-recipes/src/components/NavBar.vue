@@ -6,7 +6,7 @@
     <div class="auth-ctr">
       <div class='auth-items' v-if='$api.isAuthenticated'>
         <!-- <button @click='logout'>Logout</button> -->
-        <div class='auth-greeting'>You are signed in as <strong>{{userName}}</strong>. Welcome!</div>
+        <div class='auth-greeting'>You are signed in as <strong>{{$api.getUserName()}}</strong>. Welcome!</div>
       </div>
       <div class='auth-items' v-else>
         <!-- <button @click='login'>Login</button> -->

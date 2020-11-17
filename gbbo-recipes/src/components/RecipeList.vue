@@ -99,6 +99,7 @@ export default {
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     width: 800px;
+    margin-bottom: 2rem;
   }
   .empty-recipes-ctr {
     width: 800px;

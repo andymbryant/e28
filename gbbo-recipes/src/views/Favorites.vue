@@ -1,8 +1,16 @@
 <template>
-  <h3>These are the recipes that you have favorited. Yum!</h3>
-  <div v-if='!loading' class='favorites-ctr'>
-    <RecipeCard v-for='f in favorites' :recipeData='f' :key='f.id'></RecipeCard>
-  </div>
+  <span v-if='!loading'>
+    <div v-if='recipes.length'>
+      <h3>These are the recipes that you have favorited. Yum!</h3>
+      <div class="favorites-ctr">
+        <RecipeCard v-for='r in recipes' :recipeData='r' :key='r.id'></RecipeCard>
+      </div>
+    </div>
+    <div v-else >
+      <h3>You have not favorites any recipes.</h3>
+      <div class='favorites-ctr'></div>
+    </div>
+  </span>
 </template>
 
 <script>
@@ -16,7 +24,7 @@ export default {
   data() {
     return {
       loading: false,
-      favorites: [],
+      recipes: [],
     };
   },
   created() {
@@ -25,7 +33,7 @@ export default {
   mounted() {
     this.$api.getFavorite()
       .then((res) => Promise.all(res.map((r) => this.$api.getRecipe(r.recipe_id))))
-      .then((recipes) => this.favorites = recipes)
+      .then((recipes) => this.recipes = recipes)
       .then(() => this.loading = false)
       .catch((err) => console.error(err));
   },

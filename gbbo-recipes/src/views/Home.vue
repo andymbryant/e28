@@ -1,4 +1,5 @@
 <template>
+  <h3>Here is a list of our recipes. Click for more information. Enjoy!</h3>
   <RecipeList v-if='!loading'/>
 </template>
 

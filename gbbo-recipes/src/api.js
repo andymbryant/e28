@@ -8,6 +8,10 @@ export default class APIService {
     });
   }
 
+  get config() {
+    return { headers: { Authorization: `Bearer ${this.token}` } };
+  }
+
   getRecipe(id = null) {
     let url = '/recipe';
     if (id) {
@@ -21,7 +25,15 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    return this.axios.get(url, { headers: { Authorization: `Bearer ${this.token}` } }).then((res) => res.data.favorite);
+    return this.axios.get(url, this.config).then((res) => res.data.favorite);
+  }
+
+  getCart(id = null) {
+    let url = '/cart';
+    if (id) {
+      url += `/${id}`;
+    }
+    return this.axios.get(url, this.config).then((res) => res.data.cart);
   }
 
   get token() {
@@ -59,6 +71,10 @@ export default class APIService {
     return null;
   }
 
+  getUserName() {
+    return this.name;
+  }
+
   clearUser() {
     window.localStorage.removeItem('gb_auth_token');
     window.localStorage.removeItem('gb_auth_name');
@@ -86,10 +102,7 @@ export default class APIService {
 
   async logout() {
     const url = '/logout';
-    // const name = window.localStorage.getItem('gb_auth_name');
-    // const email = window.localStorage.getItem('gb_auth_email');
-    const token = window.localStorage.getItem('gb_auth_token');
-    return this.axios.post(url, { headers: { Authorization: `bearer ${token}` } })
+    return this.axios.post(url)
       .then(() => this.clearUser());
   }
 }
