@@ -34,7 +34,6 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    // const config = JSON.parse(JSON.stringify(this.config));
     return this.axios.get(url, this.config).then((res) => res.data.cart);
   }
 

@@ -1,5 +1,11 @@
 <template>
-  <div class='card' :class="{'card-disabled': disabled}" :disabled='disabled' @click='navToItemDetail'>
+  <div
+    v-if='!loading'
+    class='card'
+    :class="{'card-disabled': disabled}"
+    :disabled='disabled'
+    @click='navToItemDetail'
+  >
     <img class='card-img' :src="recipeData.src" :alt="recipeData.name">
     <div class="card-content">
       <h3>{{recipeData.name}}</h3>
@@ -18,8 +24,8 @@
       </div>
     </div>
     <div class="card-icons">
-      <font-awesome-icon icon="heart" class='test'/>
-      <font-awesome-icon icon="shopping-cart" class='test'/>
+      <font-awesome-icon :color='favoriteColor' icon="heart" class='test'/>
+      <font-awesome-icon :color='cartColor' icon="shopping-cart" class='test'/>
     </div>
   </div>
 </template>
@@ -27,31 +33,62 @@
 <script>
 export default {
   name: 'RecipeCard',
+  data() {
+    return {
+      loading: false,
+      inFavorites: false,
+      inCart: false,
+    };
+  },
   props: {
     recipeData: {
       type: Object,
       required: true,
     },
+    // Determines if card should be minified (usually for display on Home page)
     mini: {
       type: Boolean,
       required: false,
       default: false,
     },
+    // Determines if card should be clickable
     disabled: {
       type: Boolean,
       required: false,
       default: false,
     },
   },
-  computed: {
-    ingredients() {
-      return this.recipeData.ingredients.split(',');
-    },
-  },
   methods: {
     navToItemDetail() {
       this.$router.push({ name: 'RecipeDetail', params: { id: this.recipeData.id } });
     },
+  },
+  computed: {
+    ingredients() {
+      return this.recipeData.ingredients.split(',');
+    },
+    isRecipeInFavorites() {
+      // TODO: get list of favorite IDs from api, rather than hard-coding them here
+      return [2, 3, 6].includes(this.recipeData.id);
+    },
+    isRecipeInCart() {
+      // TODO: get list of cart IDs from api, rather than hard-coding them here
+      return [2, 4, 7].includes(this.recipeData.id);
+    },
+    favoriteColor() {
+      // If recipe is in list of favorites, return active color
+      return this.isRecipeInFavorites ? 'red' : 'grey';
+    },
+    cartColor() {
+      // If recipe is in list of cart items, return active color
+      return this.isRecipeInCart ? 'green' : 'grey';
+    },
+  },
+  created() {
+    this.loading = true;
+  },
+  mounted() {
+    this.loading = false;
   },
 };
 </script>
