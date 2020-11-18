@@ -1,0 +1,75 @@
+{
+  "recipe": {
+    "name": {
+      "type": "string",
+      "validators": [
+        "required"
+      ]
+    },
+    "description": {
+      "type": "text",
+      "validators": [
+        "required",
+        "min:10"
+      ]
+    },
+    "ingredients": {
+      "type": "text",
+      "validators": [
+        "required"
+      ]
+    },
+    "directions": {
+      "type": "text",
+      "validators": [
+        "required"
+      ]
+    },
+    "src": {
+      "type": "string",
+      "validators": [
+        "required"
+      ]
+    },
+    "link": {
+      "type": "string",
+      "validators": []
+    },
+    "categories": {
+      "type": "string",
+      "validators": []
+    }
+  },
+  "favorite": {
+    "recipe_id": {
+      "type": "integer",
+      "validators": [
+        "required",
+        "numeric"
+      ]
+    },
+    "user_id": {
+      "type": "integer",
+      "validators": [
+        "required",
+        "numeric"
+      ]
+    }
+  },
+  "cart": {
+    "recipe_id": {
+      "type": "integer",
+      "validators": [
+        "required",
+        "numeric"
+      ]
+    },
+    "user_id": {
+      "type": "integer",
+      "validators": [
+        "required",
+        "numeric"
+      ]
+    }
+  }
+}

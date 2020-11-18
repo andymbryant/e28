@@ -1,0 +1,76 @@
+{
+  "seeds": [
+    {
+      "name": "Fougasse",
+      "description": "Try this salty, herby fougasse with dips for a relaxed starter when you need to feed a crowd. This fougasse recipe by Paul Hollywood is featured in Season 4, Episode 6.",
+      "ingredients": "6 to 8 corn tortillas OR tostadas,Vegetable oil,6 to 8 large eggs,1 (14-ounce) can of refried black or pinto beans",
+      "directions": "In a small or medium sauté pan, set over medium-high heat, add two tablespoons of olive oil. When the oil is hot, add a corn tortilla, frying it until crispy, about 1 minute, and then flipping it onto its other side for an additional minute or so. Repeat until you’ve worked your way through all of the tortillas.",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2017/06/GBBA0406-Paul-Technical-670x370.jpg",
+      "link": "https://www.pbs.org/food/recipes/fougasse/",
+      "categories": "savory,bread"
+    },
+    {
+      "name": "Mary Berry's Viennese Whirls",
+      "description": "Push the boat out with these melt-in-the-mouth biscuits filled with homemade jam and vanilla buttercream. This Viennese whirls recipe by Mary Berry is featured in Season 4, Episode 2.",
+      "ingredients": "250g (9oz) very soft unsalted butter,50g (1¾oz) icing sugar,225g (8oz) plain flour,25g (1oz) cornflour",
+      "directions": "Measure the butter and icing sugar into a bowl and beat until pale and fluffy. Sift in the flour and cornflour and beat well, until thoroughly mixed. Spoon the mixture into a piping bag fitted with a medium star nozzle. Pipe 24 swirled rounds (not rosettes), inside the circles on the baking sheets.",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2017/06/Viennese-Swirls-670x370.jpg",
+      "link": "https://www.pbs.org/food/recipes/mary-berrys-viennese-whirls/",
+      "categories": "dessert,pastry"
+    },
+    {
+      "name": "Charlotte Royals",
+      "description": "This Charlotte royale recipe appears as the technical challenge in the French Week episode of Season 2 of The Great British Baking Show.",
+      "ingredients": "9 leaves gelatine,550g/1lb 4oz raspberries,2 tbsp raspberry liqueur,600ml/20fl oz full-fat milk",
+      "directions": "Bake in the two Swiss roll tins for 10–12 minutes, or until the sponges are golden-brown and begin to shrink from the edges of the tin. While the cakes are cooking, place two pieces of baking parchment a little bigger than the size of the tin on the work surface and sprinkle with caster sugar.",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2015/10/charlotte-royale-670x370.png",
+      "link": "https://www.pbs.org/food/recipes/charlotte-royale/",
+      "categories": "dessert"
+    },
+    {
+      "name": "English Muffins",
+      "description": "This english muffins recipe appears as one of the technical challenges in the Bread episode of Season 2 of The Great British Baking Show.",
+      "ingredients": "300g/10½ oz strong white bread flour, plus extra for flouring,6g fast-action yeast,6g salt,15g/½oz caster sugar",
+      "directions": "Tip the flour into a large mixing bowl. Sprinkle the yeast on one side of the flour and the salt into the other side of the flour. Add the sugar, butter, egg and milk, then mix all the ingredients together to form a soft dough.",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2015/08/Technical-Challenge-English-Muffins-670x370.png",
+      "link": "https://www.pbs.org/food/recipes/english-muffins/",
+      "categories": "breakfast,bread"
+    },
+    {
+      "name": "Angel Food Cake with Lemon Curd",
+      "description": "This angel food cake recipe appears as one of the technical challenges in the Cakes episode of Season 2 of The Great British Baking Show.",
+      "ingredients": "1 cup whole rye flour (or whole wheat flour),1/2 cup pecans,1/3 cup coconut sugar (or brown sugar),5 tbsp butter melted",
+      "directions": "In a food processor, pulse all the crust ingredients until incorporated. Pour the crumbly mixture into the buttered pan. Press it in tightly with your fingers or the bottom of measuring cup, so it covers the bottom of the pan. Bake in the oven for about 12 to 15 minutes. Remove and cool on a rack. Turn the oven to 325F.",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2015/08/GBBA0201-Tech-Angel-Food-Cake-670x370.jpg",
+      "link": "https://www.pbs.org/food/recipes/angel-food-cake-lemon-curd-2/",
+      "categories": "cake,dessert"
+    },
+    {
+      "name": "Cherry Cake",
+      "description": "This cherry cake recipe is featured as the techincal challenge in the 'Cakes' episode of The Great British Baking Show.",
+      "ingredients": "200g (7oz) red glace cherries,225g (8oz) self-raising flour,175g (6oz) softened unsalted butter,175g (6oz) caster sugar",
+      "directions": "Cut the cherries into quarters. Set aside five of the quartered cherries for the decoration later. Put the rest of the quartered cherries in a sieve and rinse under running water. Drain well then dry thoroughly on kitchen paper and toss in two tablespoons of the flour.",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2015/01/mary-cherry-cake640x360.jpg",
+      "link": "https://www.pbs.org/food/recipes/cherry-cake/",
+      "categories": "cake,dessert"
+    },
+    {
+      "name": "Florentines",
+      "description": "This florentines recipe is featured as the technical challenge in the 'Biscuits' episode of The Great British Baking Show.",
+      "ingredients": "50g (1¾ oz) butter,50g (1¾ oz) demerara sugar,50g (1¾ oz) golden syrup,50g (1¾ oz) plain flour",
+      "directions": "Set a heatproof bowl over a pan of simmering water, without letting the bowl touch the water. Temper the chocolate by breaking half of the chocolate into the bowl. Stir until the chocolate reaches a melting temperature of 53C/127F. Meanwhile, finely chop or grate the remaining chocolate.",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2015/01/mary-florentines640x360.jpg",
+      "link": "https://www.pbs.org/food/recipes/florentines/",
+      "categories": "pastry"
+    },
+    {
+      "name": "Ciabatta",
+      "description": "This ciabatta recipe is featured as the technical challenge in the 'Bread' episode of The Great British Baking Show.",
+      "ingredients": "500g (1 lb, 2oz) strong white bread flour,10g (⅓ oz) salt,10g (⅓ oz) instant yeast,fine semolina",
+      "directions": "Tip the dough into the oiled container and seal with the lid. Leave for 1½ to 1¾ hours at room temperature, or until at least doubled, even trebled in size (it's important the dough proves slowly, otherwise it will collapse and your loaves will be flat).",
+      "src": "https://www.pbs.org/food/wp-content/blogs.dir/2/files/2015/01/0103-Ciabatta2.jpg",
+      "link": "https://www.pbs.org/food/recipes/ciabatta/",
+      "categories": "bread"
+    }
+  ]
+}
