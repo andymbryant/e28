@@ -9,6 +9,7 @@ export default class APIService {
   }
 
   get config() {
+    // Header configuration for use in axios
     return { headers: { Authorization: `Bearer ${this.token}` } };
   }
 
@@ -25,8 +26,7 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    const config = JSON.parse(JSON.stringify(this.config));
-    return this.axios.get(url, config).then((res) => res.data.favorite);
+    return this.axios.get(url, this.config).then((res) => res.data.favorite);
   }
 
   getCart(id = null) {
@@ -34,8 +34,8 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    const config = JSON.parse(JSON.stringify(this.config));
-    return this.axios.get(url, config).then((res) => res.data.cart);
+    // const config = JSON.parse(JSON.stringify(this.config));
+    return this.axios.get(url, this.config).then((res) => res.data.cart);
   }
 
   get token() {
@@ -77,13 +77,14 @@ export default class APIService {
     return this.name;
   }
 
-  clearUser() {
+  async clearUser() {
     window.localStorage.removeItem('gb_auth_token');
     window.localStorage.removeItem('gb_auth_name');
     window.localStorage.removeItem('gb_auth_email');
   }
 
   async login() {
+    // TODO: implement login to take user input, rather than hard-coded dummy user data
     const url = '/login';
     const userData = {
       email: 'jill@harvard.edu',
@@ -100,8 +101,10 @@ export default class APIService {
   }
 
   async logout() {
+    // TODO: implement logout to properly logout with user info.
     const url = '/logout';
-    return this.axios.post(url)
+    // const config = JSON.parse(JSON.stringify(this.config));
+    return this.axios.post(url, this.config)
       .then(() => this.clearUser());
   }
 }

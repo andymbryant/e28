@@ -1,4 +1,5 @@
 <template>
+  <!-- Add Masthead outside of router-view to be visible on every page -->
   <Masthead/>
   <router-view v-if='!loading'/>
 </template>
@@ -20,7 +21,11 @@ export default {
     this.loading = true;
   },
   mounted() {
-    this.$api.login()
+    // Clear user data to ensure that login works correctly
+    // TODO: fix login/logout to get/set localstorage properly
+    this.$api.clearUser()
+      .then(() => this.$api.login())
+      // When login is complete, load the router-view of the application
       .then(() => this.loading = false)
       .catch((err) => console.error(err));
   },
