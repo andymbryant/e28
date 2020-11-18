@@ -1,5 +1,5 @@
 <template>
-  <div class='card' @click='navToItemDetail'>
+  <div class='card' :class="{'card-disabled': disabled}" :disabled='disabled' @click='navToItemDetail'>
     <img class='card-img' :src="recipeData.src" :alt="recipeData.name">
     <div class="card-content">
       <h3>{{recipeData.name}}</h3>
@@ -37,6 +37,11 @@ export default {
       required: false,
       default: false,
     },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   computed: {
     ingredients() {
@@ -58,8 +63,8 @@ export default {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     text-align: center;
-    cursor: pointer;
     position: relative;
+    cursor: pointer;
   }
   .card-section {
     display: flex;
@@ -88,5 +93,11 @@ export default {
   }
   .card:hover {
     box-shadow: 0 8px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+  }
+  .card-disabled {
+    cursor: inherit;
+  }
+  .card-disabled:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
 </style>

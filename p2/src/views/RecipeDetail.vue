@@ -4,6 +4,7 @@
       v-if='!loading'
       :recipeData='recipe'
       :mini='false'
+      :disabled='true'
       />
   </div>
 </template>
