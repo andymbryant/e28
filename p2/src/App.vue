@@ -1,5 +1,4 @@
 <template>
-  <!-- Add Masthead outside of router-view to be visible on every page -->
   <Masthead/>
   <router-view v-if='!loading'/>
 </template>
@@ -42,5 +41,10 @@ export default {
     flex-direction: column;
     align-items: center;
     font-family: 'Roboto', sans-serif;
+  }
+  .page-description {
+    margin: 0 auto;
+    text-align: center;
+    width: 600px;
   }
 </style>

@@ -6,7 +6,7 @@ module.exports = {
   plugins: [
     new GoogleFontsPlugin({
       fonts: [
-        { family: 'Roboto', variants: ['700', '400', '300'] },
+        { family: 'Roboto', variants: ['800', '400', '300'] },
       ],
     }),
   ],

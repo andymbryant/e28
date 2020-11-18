@@ -77,11 +77,11 @@ export default {
     },
     favoriteColor() {
       // If recipe is in list of favorites, return active color
-      return this.isRecipeInFavorites ? 'red' : 'grey';
+      return this.isRecipeInFavorites ? 'pink' : 'grey';
     },
     cartColor() {
       // If recipe is in list of cart items, return active color
-      return this.isRecipeInCart ? 'green' : 'grey';
+      return this.isRecipeInCart ? '#00c096' : 'grey';
     },
   },
   created() {

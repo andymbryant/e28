@@ -18,5 +18,6 @@ export default {
   .about-ctr {
     width: 60%;
     min-width: 320px;
+    text-align: center;
   }
 </style>

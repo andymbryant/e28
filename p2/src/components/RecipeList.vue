@@ -84,8 +84,9 @@ export default {
     flex-direction: column;
     padding-top: 0;
   }
+
   .category-checkbox {
-    color: red;
+    /* TODO: add styling for checkboxes */
   }
   .category-label {
     margin-left: 0.5rem;

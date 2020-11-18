@@ -1,5 +1,5 @@
 <template>
-  <h3>Here is a list of our recipes. Click for more information. Enjoy!</h3>
+  <div class='page-description'><p>Here is a list of our recipes. Click on any of the cards below for more information. Or you can filter them by category on the left. Enjoy!</p></div>
   <RecipeList v-if='!loading'/>
 </template>
 

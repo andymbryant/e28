@@ -1,7 +1,7 @@
 <template>
   <span v-if='!loading'>
     <div v-if='recipes.length'>
-      <h3>These are the recipes that you have favorited. Yum!</h3>
+      <div class='page-description'><p>These are the recipes that you have favorited. Click on any of the cards below for more info. Yum!</p></div>
       <div class="favorites-ctr">
         <RecipeCard v-for='r in recipes' :recipeData='r' :key='r.id'></RecipeCard>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div class='title-ctr'>
-    <h1>Great British Bake-off Recipes</h1>
-    <p>The Unofficial Online Recipe Book for your Favorite Show!</p>
+    <h1 class='title'>Great British Bake-off Recipes</h1>
+    <p class='subtitle'>The Unofficial Online Recipe Book for your Favorite TV Show!</p>
   </div>
   <NavBar/>
 </template>
@@ -23,5 +23,8 @@ export default {
     border: dashed 5px pink;
     margin-top: 2rem;
     padding: 1rem 2rem;
+  }
+  .subtitle {
+    font-style: italic;
   }
 </style>

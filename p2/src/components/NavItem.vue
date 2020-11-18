@@ -1,5 +1,4 @@
 <template>
-  <!-- <div @click='navToPath' :class='{active: isActive}'>{{name}}</div> -->
   <router-link class='nav-link' :to='path'>{{name}}</router-link>
 </template>
 
@@ -31,11 +30,14 @@ export default {
 
 <style scoped>
   .nav-link {
-    color: red;
+    color: #00c096;
     font-size: 1.2rem;
     text-decoration: none;
   }
+  .nav-link {
+    font-weight: 300;
+  }
   .router-link-active {
-    font-weight: 700;
+    font-weight: 800;
   }
 </style>
