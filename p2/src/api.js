@@ -25,7 +25,8 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    return this.axios.get(url, this.config).then((res) => res.data.favorite);
+    const config = JSON.parse(JSON.stringify(this.config));
+    return this.axios.get(url, config).then((res) => res.data.favorite);
   }
 
   getCart(id = null) {
@@ -33,7 +34,8 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    return this.axios.get(url, this.config).then((res) => res.data.cart);
+    const config = JSON.parse(JSON.stringify(this.config));
+    return this.axios.get(url, config).then((res) => res.data.cart);
   }
 
   get token() {
@@ -82,9 +84,6 @@ export default class APIService {
   }
 
   async login() {
-    if (this.isAuthenticated) {
-      return true;
-    }
     const url = '/login';
     const userData = {
       email: 'jill@harvard.edu',
