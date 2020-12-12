@@ -3,7 +3,7 @@ import axios from 'axios';
 export default class APIService {
   constructor() {
     this.axios = axios.create({
-      baseURL: 'http://e28-api.vueserver.com',
+      baseURL: 'https://e28-api.vueserver.com',
       responseType: 'json',
     });
   }
