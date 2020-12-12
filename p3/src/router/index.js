@@ -34,6 +34,12 @@ const routes = [
     props: true,
   },
   {
+    path: '/recipe-detail/:id',
+    name: 'RecipeDetail',
+    component: RecipeDetail,
+    props: true,
+  },
+  {
     path: '/404',
     name: 'NotFound',
     component: NotFound,
