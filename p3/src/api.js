@@ -5,6 +5,7 @@ export default class APIService {
     this.axios = axios.create({
       baseURL: 'https://e28-api.vueserver.com',
       responseType: 'json',
+      withCredentials: true,
     });
   }
 
