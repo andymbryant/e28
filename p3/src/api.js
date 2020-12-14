@@ -18,20 +18,94 @@ export default class APIService {
     return this.axios.get(url).then((res) => res.data.recipe);
   }
 
-  getFavorite(id = null) {
-    let url = '/favorite';
-    if (id) {
-      url += `/${id}`;
-    }
-    return this.axios.get(url).then((res) => res.data.favorite);
+  async getFavoriteRecipes() {
+    const favorites = await this.favorite.getList();
+    const recipes = await Promise.all(favorites.map((r) => this.recipe.getByID(r.recipe_id)));
+    return recipes;
   }
 
-  getCart(id = null) {
-    let url = '/cart';
-    if (id) {
-      url += `/${id}`;
-    }
-    return this.axios.get(url).then((res) => res.data.cart);
+  async getCartRecipes() {
+    const cart = await this.cart.getList();
+    const recipes = await Promise.all(cart.map((r) => this.recipe.getByID(r.recipe_id)));
+    return recipes;
+  }
+
+  get recipe() {
+    const baseUrl = '/recipe';
+    return {
+      getList: (params = null) => {
+        const url = baseUrl;
+        return this.axios.get(url, { params }).then((res) => res.data.recipe);
+      },
+      getByID: (id) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.get(url).then((res) => res.data.recipe);
+      },
+      create: (data) => {
+        const url = baseUrl;
+        return this.axios.post(url, data).then((res) => res.data.recipe);
+      },
+      update: (id, data) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.put(url, data).then((res) => res.data.recipe);
+      },
+      delete: (id) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.delete(url).then((res) => res.data.recipe);
+      },
+    };
+  }
+
+  get favorite() {
+    const baseUrl = '/favorite';
+    return {
+      getList: (params = null) => {
+        const url = baseUrl;
+        return this.axios.get(url, { params }).then((res) => res.data.favorite);
+      },
+      getByID: (id) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.get(url).then((res) => res.data.favorite);
+      },
+      create: (data) => {
+        const url = baseUrl;
+        return this.axios.post(url, data).then((res) => res.data.favorite);
+      },
+      update: (id, data) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.put(url, data).then((res) => res.data.favorite);
+      },
+      delete: (id) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.delete(url).then((res) => res.data.favorite);
+      },
+    };
+  }
+
+  get cart() {
+    const baseUrl = '/cart';
+    return {
+      getList: (params = null) => {
+        const url = baseUrl;
+        return this.axios.get(url, { params }).then((res) => res.data.cart);
+      },
+      getByID: (id) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.get(url).then((res) => res.data.cart);
+      },
+      create: (data) => {
+        const url = baseUrl;
+        return this.axios.post(url, data).then((res) => res.data.cart);
+      },
+      update: (id, data) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.put(url, data).then((res) => res.data.cart);
+      },
+      delete: (id) => {
+        const url = `${baseUrl}/${id}`;
+        return this.axios.delete(url).then((res) => res.data.cart);
+      },
+    };
   }
 
   get token() {

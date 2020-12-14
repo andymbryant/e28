@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       loading: false,
+      favorites: [],
       recipes: [],
     };
   },
@@ -31,9 +32,8 @@ export default {
     this.loading = true;
   },
   mounted() {
-    this.$api.getFavorite()
-      .then((res) => Promise.all(res.map((r) => this.$api.getRecipe(r.recipe_id))))
-      .then((recipes) => this.recipes = recipes)
+    this.$api.getFavoriteRecipes()
+      .then((res) => this.recipes = res)
       .then(() => this.loading = false)
       .catch((err) => console.error(err));
   },

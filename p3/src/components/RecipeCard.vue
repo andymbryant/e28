@@ -24,8 +24,8 @@
       </div>
     </div>
     <div class="card-icons">
-      <font-awesome-icon :color='favoriteColor' icon="heart" class='test'/>
-      <font-awesome-icon :color='cartColor' icon="shopping-cart" class='test'/>
+      <font-awesome-icon :color='favoriteColor' icon="heart"/>
+      <font-awesome-icon :color='cartColor' icon="shopping-cart"/>
     </div>
   </div>
 </template>

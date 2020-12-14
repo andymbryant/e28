@@ -28,8 +28,7 @@ export default {
     this.loading = true;
   },
   mounted() {
-    this.$api.getCart()
-      .then((res) => Promise.all(res.map((r) => this.$api.getRecipe(r.recipe_id))))
+    this.$api.getCartRecipes()
       .then((recipes) => this.recipes = recipes)
       .then(() => this.loading = false)
       .catch((err) => console.error(err));

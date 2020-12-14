@@ -1,21 +1,27 @@
 <template>
-  <h3>{{title}}</h3>
-  <form id='auth-form'>
-    <div v-if='!isLogin' class='form-field'>
-      <label for="name-field">Name</label>
-      <input type="text" id='name-field' v-model='userInfo.name' required>
-    </div>
-    <div class="form-field">
-      <label for="email">Email</label>
-      <input type="text" id='' v-model='userInfo.email' required>
-    </div>
-    <div class="form-field">
-      <label for="password-input">Password</label>
-      <input type="password" v-model='userInfo.password' required>
-    </div>
-    <button v-if='!isLogin' :disabled='!validate()' @click.prevent='register'>Register</button>
-    <button v-else :disabled='!validate()' @click.prevent='login'>Log In</button>
-  </form>
+  <span class='auth-notice' v-if='$api.isAuthenticated()'>
+    <h3>You cannot login or register because you are already logged in.</h3>
+    <p>To log out, click the logout button in the nav.</p>
+  </span>
+  <span v-else>
+    <h3>{{title}}</h3>
+    <form id='auth-form'>
+      <div v-if='!isLogin' class='form-field'>
+        <label for="name-field">Name</label>
+        <input type="text" id='name-field' v-model='userInfo.name' required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="text" id='' v-model='userInfo.email' required>
+      </div>
+      <div class="form-field">
+        <label for="password-input">Password</label>
+        <input type="text" v-model='userInfo.password' required>
+      </div>
+      <button v-if='!isLogin' :disabled='!validate()' @click.prevent='register'>Register</button>
+      <button v-else :disabled='!validate()' @click.prevent='login'>Log In</button>
+    </form>
+  </span>
 </template>
 
 <script>
@@ -74,6 +80,10 @@ export default {
 </script>
 
 <style scoped>
+
+.auth-notice {
+  text-align: center;
+}
 
 #auth-form {
   display: flex;
