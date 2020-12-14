@@ -115,8 +115,7 @@ export default class APIService {
   async logout() {
     // TODO: implement logout to properly logout with user info.
     const url = '/logout';
-    const config = JSON.parse(JSON.stringify(this.config));
-    return this.axios.post(url, config)
+    return this.axios.post(url)
       .then(() => this.clearUser())
       .catch((error) => console.error(error));
   }
