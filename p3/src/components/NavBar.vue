@@ -5,7 +5,9 @@
     </div>
     <div class="auth-ctr">
       <div class='auth-items' v-if='$api.isAuthenticated'>
-        <div class='auth-greeting'>You are signed in as <strong>{{$api.getUserName()}}</strong>. Welcome!</div>
+        <div class='auth-greeting'>You are signed in as <strong>{{$api.getUserName()}}</strong>
+          <button @click='logout'>Logout</button>
+        </div>
       </div>
       <div class='auth-items' v-else>
         <div class='auth-greeting'>
@@ -54,6 +56,9 @@ export default {
   methods: {
     navigateToLogin() {
       this.$router.push({ name: 'Login' });
+    },
+    logout() {
+      this.$api.logout();
     },
   },
   computed: {

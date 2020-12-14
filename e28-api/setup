@@ -1,6 +1,6 @@
 ver=1.0.2
 
-# To set permissions for the API we need to know what user 
+# To set permissions for the API we need to know what user
 # the server is running Apache under.
 # On DigitalOcean, this user is `www-data`.
 # If you're using a different server, run the following command to find out your Apache user:
@@ -38,10 +38,10 @@ apiDir=$(pwd)/
 coreDir=$apiDir"core/"
 publicDir=$coreDir"public/"
 
-# Determine what system we're on (local or production) based on whether the `productionApacheUser` exists 
+# Determine what system we're on (local or production) based on whether the `productionApacheUser` exists
 if [ -f "/etc/passwd" ]; then
     productionApacheUserExists=$(grep -c "^$productionApacheUser:" /etc/passwd)
-else 
+else
     productionApacheUserExists=0
 fi
 
@@ -67,7 +67,7 @@ else
         system='mac'
         phpExecutable="/Applications/XAMPP/xamppfiles/bin/php"
     # Other
-    else 
+    else
         system='other'
         phpExecutable=$(which php)
     fi
@@ -163,7 +163,7 @@ if [ ! -f ".env" ]; then
         chown -R ${productionApacheUser} "${coreDir}routes"
     elif [ $system != 'windows' ]; then
         # Note: File mode changes aren't necessary on Windows because XAMPP is running with the necessary
-        # permissions to write to the following directories. 
+        # permissions to write to the following directories.
         echo "Local: Setting write permissions on directories that Apache needs write access to"
         chmod -R 777 "${coreDir}database"
         chmod -R 777 "${coreDir}storage"
@@ -179,7 +179,7 @@ if [ ! -f ".env" ]; then
 
     echo "Creating environment file (.env)"
     cp .env.example .env
-    
+
     echo "Generating app key"
     $phpExecutable artisan key:generate
 fi
@@ -189,9 +189,9 @@ fi
 # Virtual Host
 #
 if [ $server == 'production' ]; then
-    url="e28-api.yourdomain.com"
+    url="e28-api.vueserver.com"
 else
-    url="e28-api.loc"
+    url="127.0.0.1"
 fi
 
 dump "Expected Virtual Host:"

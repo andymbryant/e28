@@ -2,8 +2,9 @@ import axios from 'axios';
 
 export default class APIService {
   constructor() {
+    const baseURL = process.env.NODE_ENV === 'production' ? 'https://e28-api.vueserver.com' : 'http://127.0.0.1:8000';
     this.axios = axios.create({
-      baseURL: 'https://e28-api.vueserver.com',
+      baseURL,
       responseType: 'json',
       withCredentials: true,
     });
@@ -91,6 +92,7 @@ export default class APIService {
       email,
       password,
     };
+
     return this.axios.post(url, userData)
       .then((res) => {
         const { token, user } = res.data;
@@ -103,10 +105,18 @@ export default class APIService {
       });
   }
 
+  async checkAuth() {
+    const url = '/auth';
+    return this.axios.post(url)
+      .then(() => this.clearUser())
+      .catch((error) => console.error(error));
+  }
+
   async logout() {
     // TODO: implement logout to properly logout with user info.
     const url = '/logout';
-    return this.axios.post(url, this.config)
+    const config = JSON.parse(JSON.stringify(this.config));
+    return this.axios.post(url, config)
       .then(() => this.clearUser())
       .catch((error) => console.error(error));
   }

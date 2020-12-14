@@ -13,7 +13,7 @@
       <label for="password-input">Password</label>
       <input type="password" v-model='userInfo.password' required>
     </div>
-    <button v-if='!isLogin' :disabled='!validate()' @click.prevent='signup'>Sign Up</button>
+    <button v-if='!isLogin' :disabled='!validate()' @click.prevent='register'>Register</button>
     <button v-else :disabled='!validate()' @click.prevent='login'>Log In</button>
   </form>
 </template>
@@ -36,13 +36,10 @@ export default {
   },
   methods: {
     login() {
-      this.$api.login(this.userInfo)
-        .then((res) => console.log(res))
-        .catch((error) => console.error(error));
+      this.$api.login(this.userInfo);
     },
-    signup() {
-      this.$api.signup(this.userInfo)
-        .then((res) => console.log(res));
+    register() {
+      this.$api.register(this.userInfo);
     },
     validate() {
       const loginFields = {
