@@ -97,14 +97,15 @@ export default class APIService {
         this.token = token;
         this.email = email;
         this.name = name;
-      });
+      })
+      .catch((error) => console.error(error));
   }
 
   async logout() {
     // TODO: implement logout to properly logout with user info.
     const url = '/logout';
-    // const config = JSON.parse(JSON.stringify(this.config));
     return this.axios.post(url, this.config)
-      .then(() => this.clearUser());
+      .then(() => this.clearUser())
+      .catch((error) => console.error(error));
   }
 }

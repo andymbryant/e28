@@ -4,7 +4,7 @@ import About from '@/views/About.vue';
 import Favorites from '@/views/Favorites.vue';
 import Cart from '@/views/Cart.vue';
 import RecipeDetail from '@/views/RecipeDetail.vue';
-import AccountPage from '@/views/AccountPage.vue';
+import RegisterUser from '@/views/RegisterUser.vue';
 import NotFound from '@/views/NotFound.vue';
 
 const routes = [
@@ -35,9 +35,9 @@ const routes = [
     props: true,
   },
   {
-    path: '/account',
-    name: 'AccountPage',
-    component: AccountPage,
+    path: '/register',
+    name: 'RegisterUser',
+    component: RegisterUser,
   },
   {
     path: '/404',
