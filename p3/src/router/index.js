@@ -5,6 +5,7 @@ import Favorites from '@/views/Favorites.vue';
 import Cart from '@/views/Cart.vue';
 import RecipeDetail from '@/views/RecipeDetail.vue';
 import AuthForm from '@/views/AuthForm.vue';
+import Forbidden from '@/views/Forbidden.vue';
 import NotFound from '@/views/NotFound.vue';
 
 const routes = [
@@ -22,11 +23,17 @@ const routes = [
     path: '/favorites',
     name: 'Favorites',
     component: Favorites,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/Cart',
     name: 'Cart',
     component: Cart,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/recipe-detail/:id',
@@ -49,6 +56,11 @@ const routes = [
       isLogin: false,
     },
     component: AuthForm,
+  },
+  {
+    path: '/fordidden',
+    name: 'Forbidden',
+    component: Forbidden,
   },
   {
     path: '/404',

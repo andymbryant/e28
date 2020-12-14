@@ -2,17 +2,12 @@ import axios from 'axios';
 
 export default class APIService {
   constructor() {
-    const baseURL = process.env.NODE_ENV === 'production' ? 'https://e28-api.vueserver.com' : 'http://127.0.0.1:8000';
+    const baseURL = process.env.NODE_ENV === 'production' ? 'https://e28-api.vueserver.com' : 'http://e28-api.vueserver.loc';
     this.axios = axios.create({
       baseURL,
       responseType: 'json',
       withCredentials: true,
     });
-  }
-
-  get config() {
-    // Header configuration for use in axios
-    return { headers: { Authorization: `Bearer ${this.token}` } };
   }
 
   getRecipe(id = null) {
@@ -28,7 +23,7 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    return this.axios.get(url, this.config).then((res) => res.data.favorite);
+    return this.axios.get(url).then((res) => res.data.favorite);
   }
 
   getCart(id = null) {
@@ -36,7 +31,7 @@ export default class APIService {
     if (id) {
       url += `/${id}`;
     }
-    return this.axios.get(url, this.config).then((res) => res.data.cart);
+    return this.axios.get(url).then((res) => res.data.cart);
   }
 
   get token() {
@@ -63,12 +58,13 @@ export default class APIService {
     window.localStorage.setItem('gb_auth_name', name);
   }
 
-  get isAuthenticated() {
-    return this.token && this.name && this.email;
+  isAuthenticated() {
+    const flag = this.token && this.name && this.email;
+    return !!flag;
   }
 
   get user() {
-    if (this.isAuthenticated) {
+    if (this.isAuthenticated()) {
       return { name: this.name, email: this.email };
     }
     return null;
@@ -105,12 +101,13 @@ export default class APIService {
       });
   }
 
-  async checkAuth() {
-    const url = '/auth';
-    return this.axios.post(url)
-      .then(() => this.clearUser())
-      .catch((error) => console.error(error));
-  }
+  // async checkAuth() {
+  //   const url = '/auth';
+  //   const res = this.axios.post(url)
+  //     .catch((error) => console.error(error));
+  //   console.log(res);
+  //   return res;
+  // }
 
   async logout() {
     // TODO: implement logout to properly logout with user info.

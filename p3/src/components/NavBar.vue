@@ -4,16 +4,14 @@
       <NavItem v-for='i in items' :key='i.key' :name='i.name' :path='i.path'/>
     </div>
     <div class="auth-ctr">
-      <div class='auth-items' v-if='$api.isAuthenticated'>
-        <div class='auth-greeting'>You are signed in as <strong>{{$api.getUserName()}}</strong>
-          <button @click='logout'>Logout</button>
+      <div class='auth-items' :key='authKey' v-if='$api.isAuthenticated()'>
+        <div class='auth-greeting'>Hello, <span class='user-name'>{{username}}</span>
+          <button class='auth-button' @click='logout'>Logout</button>
         </div>
       </div>
       <div class='auth-items' v-else>
-        <div class='auth-greeting'>
-          <button @click='navigateToLogin'>Login</button>
-          <button @click='navigateToSignup'>Signup</button>
-        </div>
+        <button @click='navigateToLogin'>Login</button>
+        <button class='auth-button' @click='navigateToRegister'>Register</button>
       </div>
     </div>
   </div>
@@ -51,19 +49,30 @@ export default {
           path: '/cart',
         },
       ],
+      authKey: 0,
     };
   },
   methods: {
     navigateToLogin() {
       this.$router.push({ name: 'Login' });
     },
+    navigateToRegister() {
+      this.$router.push({ name: 'Register' });
+    },
     logout() {
-      this.$api.logout();
+      this.$api.logout()
+        .then(() => this.$nextTick(() => this.authKey += 1))
+        .finally(() => this.$router.push({ name: 'Home' }));
     },
   },
   computed: {
-    userName() {
-      return this.$api.user.name;
+    username() {
+      const username = this.$api.user.name;
+      const length = 15;
+      if (username.length < length) {
+        return username;
+      }
+      return `${username.substring(0, length)}...`;
     },
   },
 };
@@ -88,5 +97,11 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .auth-button {
+    margin-left: 1rem;
+  }
+  .user-name {
+    font-weight: 700;
   }
 </style>

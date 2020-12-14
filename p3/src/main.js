@@ -20,4 +20,15 @@ library.add(faHeart);
 library.add(faShoppingCart);
 app.component('font-awesome-icon', FontAwesomeIcon);
 
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  if (requiresAuth && !api.isAuthenticated()) {
+    // If they’re trying to access a requiresAuth route and they're not logged in, they get sent to "Access Denied" page
+    next({ name: 'Forbidden' });
+  } else {
+    // In all other circumstances, send them to the route they requested
+    next();
+  }
+});
+
 app.use(router).mount('#app');
