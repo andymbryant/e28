@@ -4,7 +4,7 @@ import About from '@/views/About.vue';
 import Favorites from '@/views/Favorites.vue';
 import Cart from '@/views/Cart.vue';
 import RecipeDetail from '@/views/RecipeDetail.vue';
-import RegisterUser from '@/views/RegisterUser.vue';
+import AuthForm from '@/views/AuthForm.vue';
 import NotFound from '@/views/NotFound.vue';
 
 const routes = [
@@ -35,9 +35,20 @@ const routes = [
     props: true,
   },
   {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      isLogin: true,
+    },
+    component: AuthForm,
+  },
+  {
     path: '/register',
-    name: 'RegisterUser',
-    component: RegisterUser,
+    name: 'Register',
+    meta: {
+      isLogin: false,
+    },
+    component: AuthForm,
   },
   {
     path: '/404',

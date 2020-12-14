@@ -8,7 +8,10 @@
         <div class='auth-greeting'>You are signed in as <strong>{{$api.getUserName()}}</strong>. Welcome!</div>
       </div>
       <div class='auth-items' v-else>
-        <div class='auth-greeting'>Please sign in!</div>
+        <div class='auth-greeting'>
+          <button @click='navigateToLogin'>Login</button>
+          <button @click='navigateToSignup'>Signup</button>
+        </div>
       </div>
     </div>
   </div>
@@ -49,11 +52,8 @@ export default {
     };
   },
   methods: {
-    login() {
-      this.$api.login();
-    },
-    logout() {
-      this.$api.logout();
+    navigateToLogin() {
+      this.$router.push({ name: 'Login' });
     },
   },
   computed: {

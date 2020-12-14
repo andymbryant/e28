@@ -83,22 +83,24 @@ export default class APIService {
     window.localStorage.removeItem('gb_auth_email');
   }
 
-  async login() {
-    // TODO: implement login to take user input, rather than hard-coded dummy user data
+  async login({ email, password }) {
+    if (!email) console.error('email required');
+    if (!password) console.error('password required');
     const url = '/login';
     const userData = {
-      email: 'jill@harvard.edu',
-      password: 'asdfasdf',
+      email,
+      password,
     };
     return this.axios.post(url, userData)
       .then((res) => {
         const { token, user } = res.data;
-        const { name, email } = user;
         this.token = token;
-        this.email = email;
-        this.name = name;
+        this.email = user.email;
+        this.name = user.name;
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   async logout() {
@@ -106,6 +108,26 @@ export default class APIService {
     const url = '/logout';
     return this.axios.post(url, this.config)
       .then(() => this.clearUser())
+      .catch((error) => console.error(error));
+  }
+
+  async register({ name, email, password }) {
+    if (!name) console.error('name required');
+    if (!email) console.error('email required');
+    if (!password) console.error('password required');
+    const userData = {
+      name,
+      email,
+      password,
+    };
+    const url = '/register';
+    return this.axios.post(url, userData)
+      .then((res) => {
+        const { token, user } = res.data;
+        this.token = token;
+        this.email = user.email;
+        this.name = user.name;
+      })
       .catch((error) => console.error(error));
   }
 }

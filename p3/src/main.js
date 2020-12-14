@@ -9,12 +9,11 @@ import './css/variables.css';
 import App from './App.vue';
 import store from './store';
 
+const app = createApp(App).use(store);
+
 // Initialize API for use throughout the application
 const api = new APIService();
-const app = createApp(App);
 app.config.globalProperties.$api = reactive(api);
-
-app.use(store);
 
 // Register font-awesome icons and component
 library.add(faHeart);
