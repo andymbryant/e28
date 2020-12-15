@@ -42,10 +42,14 @@ export default {
   },
   methods: {
     login() {
-      this.$api.login(this.userInfo);
+      this.$api.login(this.userInfo)
+        .then(() => this.$router.push({ name: 'Home' }))
+        .catch((error) => console.error(error));
     },
     register() {
-      this.$api.register(this.userInfo);
+      this.$api.register(this.userInfo)
+        .then(() => this.$router.push({ name: 'Home' }))
+        .catch((error) => console.error(error));
     },
     validate() {
       const loginFields = {

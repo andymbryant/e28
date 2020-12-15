@@ -3,7 +3,15 @@
     <div v-if='recipes.length'>
       <div class='page-description'><p>These are the recipes that you have favorited. Click on any of the cards below for more info. Yum!</p></div>
       <div class="favorites-ctr">
-        <RecipeCard v-for='r in recipes' :recipeData='r' :key='r.id'></RecipeCard>
+        <RecipeCard
+          v-for='r in recipes'
+          :recipeData='r'
+          :key='r.id'
+          :favorites='favorites'
+          :cart='cart'
+          @update-favorites='updateFavorites'
+          @update-cart='updateCart'
+        ></RecipeCard>
       </div>
     </div>
     <div v-else >
@@ -25,17 +33,25 @@ export default {
     return {
       loading: false,
       favorites: [],
+      cart: [],
       recipes: [],
     };
+  },
+  methods: {
+    async init() {
+      this.recipes = await this.$api.recipe.getList();
+      if (this.$api.isAuthenticated()) {
+        this.favorites = await this.$api.favorite.getList();
+        this.cart = await this.$api.cart.getList();
+      }
+    },
   },
   created() {
     this.loading = true;
   },
   mounted() {
-    this.$api.getFavoriteRecipes()
-      .then((res) => this.recipes = res)
-      .then(() => this.loading = false)
-      .catch((err) => console.error(err));
+    this.init()
+      .then(() => this.loading = false);
   },
 };
 </script>

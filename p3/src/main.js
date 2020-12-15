@@ -9,7 +9,7 @@ import './css/variables.css';
 import App from './App.vue';
 import store from './store';
 
-const app = createApp(App).use(store);
+const app = createApp(App);
 
 // Initialize API for use throughout the application
 const api = new APIService();
@@ -31,4 +31,6 @@ router.beforeEach(async (to, from, next) => {
   }
 });
 
-app.use(router).mount('#app');
+store.$api = api;
+
+app.use(router).use(store).mount('#app');

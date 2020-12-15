@@ -30,7 +30,7 @@ export default {
     this.loading = true;
   },
   mounted() {
-    this.$api.getRecipe(this.id)
+    this.$api.recipe.getByID(this.id)
       .then((res) => this.recipe = res)
       .then(() => this.$nextTick(() => this.loading = false));
   },

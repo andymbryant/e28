@@ -10,14 +10,6 @@ export default class APIService {
     });
   }
 
-  getRecipe(id = null) {
-    let url = '/recipe';
-    if (id) {
-      url += `/${id}`;
-    }
-    return this.axios.get(url).then((res) => res.data.recipe);
-  }
-
   async getFavoriteRecipes() {
     const favorites = await this.favorite.getList();
     const recipes = await Promise.all(favorites.map((r) => this.recipe.getByID(r.recipe_id)));
@@ -67,8 +59,11 @@ export default class APIService {
         const url = `${baseUrl}/${id}`;
         return this.axios.get(url).then((res) => res.data.favorite);
       },
-      create: (data) => {
+      create: (id) => {
         const url = baseUrl;
+        const data = {
+          recipe_id: id,
+        };
         return this.axios.post(url, data).then((res) => res.data.favorite);
       },
       update: (id, data) => {
@@ -93,8 +88,11 @@ export default class APIService {
         const url = `${baseUrl}/${id}`;
         return this.axios.get(url).then((res) => res.data.cart);
       },
-      create: (data) => {
+      create: (id) => {
         const url = baseUrl;
+        const data = {
+          recipe_id: id,
+        };
         return this.axios.post(url, data).then((res) => res.data.cart);
       },
       update: (id, data) => {

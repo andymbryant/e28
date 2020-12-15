@@ -2,7 +2,7 @@
   <div class='recipe-list-ctr' v-if='!loading'>
     <div class="categories-ctr">
       <h4 class='section-header'>Categories</h4>
-      <span v-for='c in allCategories' :key='c'>
+      <span v-for='c in recipeCategories' :key='c'>
         <input
           type="checkbox"
           class='category-checkbox'
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+/* eslint-disable no-underscore-dangle */
+import { mapGetters, mapActions } from 'vuex';
 import RecipeCard from '@/components/RecipeCard.vue';
 
 export default {
@@ -38,38 +40,36 @@ export default {
   data() {
     return {
       loading: false,
-      recipes: null,
-      selectedCategories: [],
+      selectedCategories: ['savory', 'bread', 'dessert', 'pastry', 'breakfast', 'cake'],
     };
   },
+  methods: {
+    ...mapActions(['updateRecipes', 'updateCart']),
+    getRecipeCategories() {
+      const allCategories = [];
+      console.log(this.recipes);
+      this.recipes.forEach((r) => {
+        const categories = r.categories.split(',');
+        allCategories.push(categories);
+      });
+      return Array.from(new Set(allCategories.flat()));
+    },
+  },
   computed: {
+    ...mapGetters(['recipes', 'cart', 'recipeCategories']),
     filteredRecipes() {
       const recipes = this.recipes.filter((r) => {
         const categories = r.categories.split(',');
-        const selectedCategories = this.selectedCategories;
-        return categories.some((c) => selectedCategories.includes(c));
+        return categories.some((c) => this.selectedCategories.includes(c));
       });
       return recipes;
-    },
-    allCategories() {
-      const allCategories = [];
-      if (this.recipes) {
-        this.recipes.forEach((r) => {
-          const categories = r.categories.split(',');
-          allCategories.push(categories);
-        });
-      }
-      return Array.from(new Set(allCategories.flat()));
     },
   },
   created() {
     this.loading = true;
   },
   mounted() {
-    this.$api.getRecipe()
-      .then((res) => this.recipes = res)
-      .then(() => this.selectedCategories = this.allCategories)
-      .then(() => this.loading = false);
+    this.loading = false;
   },
 };
 </script>
@@ -85,9 +85,6 @@ export default {
     padding-top: 0;
   }
 
-  .category-checkbox {
-    /* TODO: add styling for checkboxes */
-  }
   .category-label {
     margin-left: 0.5rem;
   }

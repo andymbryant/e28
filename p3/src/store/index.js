@@ -1,13 +1,9 @@
+/* eslint-disable radix */
 import { createStore } from 'vuex';
+import items from './modules/items';
 
 export default createStore({
-  state: {
-    user: null,
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    items,
   },
 });

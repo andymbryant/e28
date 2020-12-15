@@ -4,6 +4,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import RecipeList from '@/components/RecipeList.vue';
 
 export default {
@@ -16,11 +17,14 @@ export default {
       loading: false,
     };
   },
-  created() {
-    this.loading = true;
+  methods: {
+    ...mapActions(['initData']),
   },
   mounted() {
-    this.loading = false;
+    this.initData()
+      .then(() => setTimeout(() => {
+        this.loading = false;
+      }, 600));
   },
 };
 </script>
