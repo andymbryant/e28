@@ -32,9 +32,6 @@ export default {
       recipes: [],
     };
   },
-  // computed: {
-  //   ...mapGetters(['recipes']),
-  // },
   created() {
     this.loading = true;
   },
