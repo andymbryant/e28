@@ -59,7 +59,7 @@ export default {
       const registerFields = {
         name: 'required',
         email: 'required',
-        password: 'required',
+        password: 'required|min:8',
       };
       const validator = new Validator(this.userInfo, this.isLogin ? loginFields : registerFields);
       this.errors = validator.errors.all();

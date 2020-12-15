@@ -201,10 +201,15 @@ export default class APIService {
     const url = '/register';
     return this.axios.post(url, userData)
       .then((res) => {
-        const { token, user } = res.data;
-        this.token = token;
-        this.email = user.email;
-        this.name = user.name;
+        const { errors } = res.data;
+        if (errors) {
+          console.error(errors[0]);
+        } else {
+          const { token, user } = res.data;
+          this.token = token;
+          this.email = user.email;
+          this.name = user.name;
+        }
       })
       .catch((error) => console.error(error));
   }

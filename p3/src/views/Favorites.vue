@@ -11,7 +11,7 @@
       </div>
     </div>
     <div v-else >
-      <h3>You have not favorites any recipes.</h3>
+      <h3>You have not favorited any recipes. You can do so on the home page.</h3>
       <div class='favorites-ctr'></div>
     </div>
   </span>
