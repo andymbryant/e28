@@ -7,10 +7,6 @@
           v-for='r in recipes'
           :recipeData='r'
           :key='r.id'
-          :favorites='favorites'
-          :cart='cart'
-          @update-favorites='updateFavorites'
-          @update-cart='updateCart'
         ></RecipeCard>
       </div>
     </div>
@@ -23,6 +19,7 @@
 
 <script>
 import RecipeCard from '@/components/RecipeCard.vue';
+// import { mapGetters } from 'vuex';
 
 export default {
   name: 'Favorites',
@@ -32,25 +29,18 @@ export default {
   data() {
     return {
       loading: false,
-      favorites: [],
-      cart: [],
       recipes: [],
     };
   },
-  methods: {
-    async init() {
-      this.recipes = await this.$api.recipe.getList();
-      if (this.$api.isAuthenticated()) {
-        this.favorites = await this.$api.favorite.getList();
-        this.cart = await this.$api.cart.getList();
-      }
-    },
-  },
+  // computed: {
+  //   ...mapGetters(['recipes']),
+  // },
   created() {
     this.loading = true;
   },
   mounted() {
-    this.init()
+    this.$api.getFavoriteRecipes()
+      .then((recipes) => this.recipes = recipes)
       .then(() => this.loading = false);
   },
 };

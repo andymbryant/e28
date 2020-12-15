@@ -17,6 +17,12 @@ export default {
       loading: false,
     };
   },
+  computed: {
+    auth() {
+      return this.$api.isAuthenticated();
+    },
+
+  },
   methods: {
     ...mapActions(['initData']),
   },

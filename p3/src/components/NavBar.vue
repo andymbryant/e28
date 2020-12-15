@@ -61,6 +61,7 @@ export default {
     },
     logout() {
       this.$api.logout()
+        .then(() => this.$store.dispatch('initData'))
         .then(() => this.$nextTick(() => this.authKey += 1))
         .finally(() => this.$router.push({ name: 'Home' }));
     },

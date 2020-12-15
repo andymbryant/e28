@@ -79,12 +79,6 @@ const mutations = {
   setCart(state, payload) {
     state.cart = payload;
   },
-  addRecipe(state, payload) {
-    state.recipes.push(payload);
-  },
-  removeRecipe(state, payload) {
-    state.recipes = state.recipes.filter((r) => r !== payload);
-  },
 };
 
 export default {
