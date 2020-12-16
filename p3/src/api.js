@@ -173,14 +173,6 @@ export default class APIService {
       });
   }
 
-  // async checkAuth() {
-  //   const url = '/auth';
-  //   const res = this.axios.post(url)
-  //     .catch((error) => console.error(error));
-  //   console.log(res);
-  //   return res;
-  // }
-
   async logout() {
     // TODO: implement logout to properly logout with user info.
     const url = '/logout';

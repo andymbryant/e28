@@ -18,8 +18,8 @@
         <label for="password-field">Password</label>
         <input type="text" id='password-field' name='password-field' v-model='userInfo.password' required>
       </div>
-      <button v-if='!isLogin' :disabled='!validate()' @click.prevent='register'>Register</button>
-      <button v-else :disabled='!validate()' @click.prevent='login'>Log In</button>
+      <button v-if='!isLogin' :disabled='!validate()' id='register-btn' @click.prevent='register'>Register</button>
+      <button v-else :disabled='!validate()' id='login-btn' @click.prevent='login'>Log In</button>
     </form>
   </span>
 </template>

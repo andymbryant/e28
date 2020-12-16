@@ -1,5 +1,8 @@
 <template>
-  <div class='page-description'><p>Here is a list of our recipes. Click on any of the cards below for more information. Or you can filter them by category on the left. Enjoy!</p></div>
+  <div class='page-description'>
+    <p>Here is a list of our recipes. Click on any of the cards below for more information.</p>
+    <p>Or you can filter them by category on the left. Enjoy!</p>
+  </div>
   <RecipeList v-if='!loading'/>
 </template>
 

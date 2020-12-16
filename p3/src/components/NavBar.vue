@@ -5,7 +5,7 @@
     </div>
     <div class="auth-ctr">
       <div class='auth-items' :key='authKey' v-if='$api.isAuthenticated()'>
-        <div class='auth-greeting'>Hello, <span class='user-name'>{{username}}</span>
+        <div class='auth-greeting'>Hello, <span data-test='user-name' class='user-name'>{{username}}</span>
           <button class='auth-button' @click='logout'>Logout</button>
         </div>
       </div>

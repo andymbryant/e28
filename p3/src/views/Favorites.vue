@@ -19,7 +19,6 @@
 
 <script>
 import RecipeCard from '@/components/RecipeCard.vue';
-// import { mapGetters } from 'vuex';
 
 export default {
   name: 'Favorites',

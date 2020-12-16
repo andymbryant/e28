@@ -23,17 +23,17 @@
       </div>
     </div>
     <div class="card-icons">
-      <button v-if='isRecipeInFavorites()' :disabled='!$api.isAuthenticated()' @click.prevent='updateFavorites("remove")'>
-        <font-awesome-icon color='pink' icon="heart"/>
+      <button v-if='isRecipeInFavorites()' :disabled='!$api.isAuthenticated()' :data-test="`favorite-${recipeData.id}`" @click.prevent='updateFavorites("remove")'>
+        <font-awesome-icon color='pink' :data-test="`heart-icon-${recipeData.id}`" icon="heart"/>
       </button>
-      <button v-else :disabled='!$api.isAuthenticated()' @click.prevent='updateFavorites("add")'>
-        <font-awesome-icon color='grey' icon="heart"/>
+      <button v-else :disabled='!$api.isAuthenticated()' :data-test="`favorite-${recipeData.id}`" @click.prevent='updateFavorites("add")'>
+        <font-awesome-icon color='grey' :data-test="`heart-icon-${recipeData.id}`" icon="heart"/>
       </button>
-      <button v-if='isRecipeInCart()' :disabled='!$api.isAuthenticated()' @click.prevent='updateCart("remove")'>
-        <font-awesome-icon color='#00c096' icon="shopping-cart"/>
+      <button v-if='isRecipeInCart()' :disabled='!$api.isAuthenticated()' :data-test="`cart-${recipeData.id}`" @click.prevent='updateCart("remove")'>
+        <font-awesome-icon color='#00c096' :data-test="`cart-icon-${recipeData.id}`" icon="shopping-cart"/>
       </button>
-      <button v-else :disabled='!$api.isAuthenticated()' @click.prevent='updateCart("add")'>
-        <font-awesome-icon color='grey' icon="shopping-cart"/>
+      <button v-else :disabled='!$api.isAuthenticated()' :data-test="`cart-${recipeData.id}`" @click.prevent='updateCart("add")'>
+        <font-awesome-icon color='grey' :data-test="`cart-icon-${recipeData.id}`" icon="shopping-cart"/>
       </button>
     </div>
   </div>
@@ -107,6 +107,9 @@ export default {
     ...mapGetters(['favoriteRecipeIDs', 'cartRecipeIDs']),
     ingredients() {
       return this.recipeData.ingredients.split(',');
+    },
+    favoriteBtn() {
+      return `favorite-${this.recipeData.id}`;
     },
   },
   created() {
