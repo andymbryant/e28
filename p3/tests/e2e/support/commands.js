@@ -36,6 +36,20 @@ Cypress.Commands.add('logout', () => {
   cy.get('.auth-button').click();
 });
 
+Cypress.Commands.add('register', (name, email, password) => {
+  cy.visit('/register');
+  cy.get('#name-field').type(name);
+  cy.get('#email-field').type(email);
+  cy.get('#password-field').type(password);
+  cy.get('#register-btn').click();
+});
+
+Cypress.Commands.add('showForbidden', () => {
+  cy.location('pathname', { timeout: 500 }).should('eq', '/forbidden');
+  cy.contains('h1', 'Whoops!');
+  cy.contains('h3', 'It looks like you took a wrong turn.');
+});
+
 Cypress.Commands.add('checkRecipeOne', () => {
   cy.contains('h4', 'Ingredients');
   cy.get('[alt="Fougasse"]').should('be.visible').and(($img) => {

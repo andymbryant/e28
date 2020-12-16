@@ -58,7 +58,7 @@ const routes = [
     component: AuthForm,
   },
   {
-    path: '/fordidden',
+    path: '/forbidden',
     name: 'Forbidden',
     component: Forbidden,
   },
