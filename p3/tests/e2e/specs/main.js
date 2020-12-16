@@ -84,7 +84,6 @@ describe('Cart action', () => {
     cy.get("[data-test='cart-icon-1']").should('have.css', 'color').and('eq', 'rgb(0, 192, 150)');
     cy.visit('/cart');
     cy.location('pathname', { timeout: 1000 }).should('eq', '/cart');
-    cy.contains('li', '6 to 8 corn tortillas OR tostadas');
   });
 });
 
@@ -94,5 +93,17 @@ describe('Logout action', () => {
     cy.logout();
     cy.contains('button', 'Login');
     cy.contains('button', 'Register');
+  });
+});
+
+describe('404', () => {
+  it('Display 404 page', () => {
+    cy.visit('/404');
+    cy.location('pathname', { timeout: 1000 }).should('eq', '/404');
+    cy.contains('h1', 'Not Found');
+  });
+  it('Display 404 page', () => {
+    cy.visit('/abcd');
+    cy.contains('h1', 'Not Found');
   });
 });
